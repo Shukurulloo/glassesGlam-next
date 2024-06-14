@@ -1,4 +1,4 @@
-import { makeVar } from '@apollo/client';
+import { makeVar } from '@apollo/client'; // reactive variablelarni qurish uchun kerak
 
 import { CustomJwtPayload } from '../libs/types/customJwtPayload';
 export const themeVar = makeVar({});

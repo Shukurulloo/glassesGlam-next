@@ -12,7 +12,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import { Direction } from '../../libs/enums/common.enum';
 
-export const getStaticProps = async ({ locale }: any) => ({
+export const getStaticProps = async ({ locale }: any) => ({ // agar bu qo'yilmasa til tarjima qilinmaydi
 	props: {
 		...(await serverSideTranslations(locale, ['common'])),
 	},
@@ -36,7 +36,7 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 	/** LIFECYCLES **/
 	useEffect(() => {
 		if (router.query.input) {
-			const inputObj = JSON.parse(router?.query?.input as string);
+			const inputObj = JSON.parse(router?.query?.input as string); //searchFilter mantiqlarni routerQuerydan yuklab oladi
 			setSearchFilter(inputObj);
 		}
 
@@ -173,7 +173,7 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 	}
 };
 
-PropertyList.defaultProps = {
+PropertyList.defaultProps = { // query bo'lmasa bydefoult queryga yuklab beradi
 	initialInput: {
 		page: 1,
 		limit: 9,

@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = { // til uchun
 	i18n: {
 		defaultLocale: 'en',
 		locales: ['en', 'kr', 'ru'],

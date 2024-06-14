@@ -21,7 +21,7 @@ export const logIn = async (nick: string, password: string): Promise<void> => {
 
 		if (jwtToken) {
 			updateStorage({ jwtToken });
-			updateUserInfo(jwtToken);
+			updateUserInfo(jwtToken); // asosiy mantiq
 		}
 	} catch (err) {
 		console.warn('login err', err);
@@ -40,7 +40,7 @@ const requestJwtToken = async ({
 	const apolloClient = await initializeApollo();
 
 	try {
-		const result = await apolloClient.mutate({
+		const result = await apolloClient.mutate({ // spasific hollardagina apolloClient.mutate querydan foydalanamz
 			mutation: LOGIN,
 			variables: { input: { memberNick: nick, memberPassword: password } },
 			fetchPolicy: 'network-only',
@@ -128,7 +128,7 @@ export const updateUserInfo = (jwtToken: any) => {
 	if (!jwtToken) return false;
 
 	const claims = decodeJWT<CustomJwtPayload>(jwtToken);
-	userVar({
+	userVar({ // malumot yuklayiz
 		_id: claims._id ?? '',
 		memberType: claims.memberType ?? '',
 		memberStatus: claims.memberStatus ?? '',

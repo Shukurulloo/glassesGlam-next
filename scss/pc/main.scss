@@ -33,6 +33,11 @@
 @import '/scss/pc/member/memberArticles.scss';
 @import '/scss/pc/member/memberProperties.scss';
 
+/** main => 
+	1) turli layoutlar uchun hizmat qiladigon scss larni jamlaydi
+	2) layoutda oraliq componentlar yani pages routing tizimida mujassam bo'lgan jami componentlardagi sass mantiqlarni
+		integratsia qilish ucun main.scss ularni o'ziga chaqirib oladi */
+
 body {
 	-ms-overflow-style: none; /* for Internet Explorer, Edge */
 	scrollbar-width: none; /* for Firefox */

@@ -8,7 +8,7 @@ import { getJwtToken } from '../libs/auth';
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
-function getHeaders() {
+function getHeaders() { // agar member auth bo'lga  bo'lsa localStoragedan aceesTokenga briktrilgan tokenni qabul qilib headerni boyitadi
 	const headers = {} as HeadersInit;
 	const token = getJwtToken();
 	// @ts-ignore
@@ -33,7 +33,7 @@ function createIsomorphicLink() {
 			operation.setContext(({ headers = {} }) => ({
 				headers: {
 					...headers,
-					...getHeaders(),
+					...getHeaders(),  // hamm requestdan auth bo'lgan memberni tookenini requestni headers qismiga bog'lab beradi
 				},
 			}));
 			console.warn('requesting.. ', operation);
@@ -42,7 +42,7 @@ function createIsomorphicLink() {
 
 		// @ts-ignore
 		const link = new createUploadLink({
-			uri: process.env.REACT_APP_API_GRAPHQL_URL,
+			uri: process.env.REACT_APP_API_GRAPHQL_URL, // serverimz localhost:3007 ga bog'lanadi
 		});
 
 		/* WEBSOCKET SUBSCRIPTION LINK */
@@ -82,7 +82,7 @@ function createIsomorphicLink() {
 	}
 }
 
-function createApolloClient() {
+function createApolloClient() { // yangi apollo,client quradi
 	return new ApolloClient({
 		ssrMode: typeof window === 'undefined',
 		link: createIsomorphicLink(),
@@ -99,8 +99,8 @@ export function initializeApollo(initialState = null) {
 
 	return _apolloClient;
 }
-
-export function useApollo(initialState: any) {
+/**  */
+export function useApollo(initialState: any) { // bu customized hookimz
 	return useMemo(() => initializeApollo(initialState), [initialState]);
 }
 

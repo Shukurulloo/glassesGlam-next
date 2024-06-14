@@ -21,7 +21,7 @@ import { REACT_APP_API_URL } from '../config';
 const Top = () => {
 	const device = useDeviceDetect();
 	const user = useReactiveVar(userVar);
-	const { t, i18n } = useTranslation('common');
+	const { t, i18n } = useTranslation('common');   // t harfi lug'atga kiritilgan so'zlarni chaqiradi
 	const router = useRouter();
 	const [anchorEl2, setAnchorEl2] = useState<null | HTMLElement>(null);
 	const [lang, setLang] = useState<string | null>('en');
