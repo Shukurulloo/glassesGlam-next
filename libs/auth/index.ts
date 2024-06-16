@@ -40,7 +40,8 @@ const requestJwtToken = async ({
 	const apolloClient = await initializeApollo();
 
 	try {
-		const result = await apolloClient.mutate({ // spasific hollardagina apolloClient.mutate querydan foydalanamz
+		const result = await apolloClient.mutate({
+			// spasific hollardagina apolloClient.mutate querydan foydalanamz
 			mutation: LOGIN,
 			variables: { input: { memberNick: nick, memberPassword: password } },
 			fetchPolicy: 'network-only',
@@ -128,7 +129,8 @@ export const updateUserInfo = (jwtToken: any) => {
 	if (!jwtToken) return false;
 
 	const claims = decodeJWT<CustomJwtPayload>(jwtToken);
-	userVar({ // malumot yuklayiz
+	userVar({
+		// malumot yuklayiz
 		_id: claims._id ?? '',
 		memberType: claims.memberType ?? '',
 		memberStatus: claims.memberStatus ?? '',
@@ -156,6 +158,7 @@ export const updateUserInfo = (jwtToken: any) => {
 export const logOut = () => {
 	deleteStorage();
 	deleteUserInfo();
+	window.location.reload();
 };
 
 const deleteStorage = () => {
