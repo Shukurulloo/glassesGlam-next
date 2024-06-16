@@ -121,7 +121,7 @@ TopAgents.defaultProps = {
 		page: 1,
 		limit: 10,
 		sort: 'memberRank',
-		direction: 'DESC',
+		// direction: 'DESC',
 		search: {},
 	},
 };

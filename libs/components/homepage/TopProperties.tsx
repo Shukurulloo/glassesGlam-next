@@ -33,14 +33,14 @@ const TopProperties = (props: TopPropertiesProps) => {
 		error: getPropertiesError,
 		refetch: getPropertiesRefetch,
 	} = useQuery(GET_PROPERTIES, {
-		fetchPolicy: "cache-and-network",
-		variables: {input: initialInput},
+		fetchPolicy: 'cache-and-network',
+		variables: { input: initialInput },
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setTopProperties(data?.getProperties?.list)
+			setTopProperties(data?.getProperties?.list);
 		},
-	})
-	
+	});
+
 	/** HANDLERS **/
 	const likePropertyHandler = async (user: T, id: string) => {
 		try {
@@ -80,7 +80,7 @@ const TopProperties = (props: TopPropertiesProps) => {
 							{topProperties.map((property: Property) => {
 								return (
 									<SwiperSlide className={'top-property-slide'} key={property?._id}>
-										{/* <TopPropertyCard property={property} /> */}
+										<TopPropertyCard property={property} likePropertyHandler={likePropertyHandler} />
 									</SwiperSlide>
 								);
 							})}
