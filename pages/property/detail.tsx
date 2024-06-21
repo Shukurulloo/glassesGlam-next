@@ -184,7 +184,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 		}
 	};
 
-	const createCommentChangeHandler = async (event: ChangeEvent<unknown>, value: number) => {
+	const createCommentChangeHandler = async () => {
 		try {
 			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED);
 			await createComment({ variables: { input: insertCommentData } });
