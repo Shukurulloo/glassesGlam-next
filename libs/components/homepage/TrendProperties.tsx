@@ -25,37 +25,37 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 	const [trendProperties, setTrendProperties] = useState<Property[]>([]);
 
 	/** APOLLO REQUESTS **/
-	const [likeTargetProperty] = useMutation(LIKE_TARGET_PROPERTY);
+	const [likeTargetProperty] = useMutation(LIKE_TARGET_PROPERTY);  // hooktan foydalanamz
 
-	const {
-		loading: getPropertiesLoading,
-		data: getPropertiesData,
-		error: getPropertiesError,
-		refetch: getPropertiesRefetch,
-	} = useQuery(GET_PROPERTIES, {
-		fetchPolicy: 'cache-and-network',
-		variables: { input: initialInput },
-		notifyOnNetworkStatusChange: true,
-		onCompleted: (data: T) => {
-			setTrendProperties(data?.getProperties?.list);
+	const { // useQuery fazalarni olib beradi 
+		loading: getPropertiesLoading, // loading bo'lish jarayoni
+		data: getPropertiesData,  // data asosiy // bu kesh shuyerga saqlaymz
+		error: getPropertiesError, // data kirib kelgunga qadar error hosil bo'lsa
+		refetch: getPropertiesRefetch, // backentdan qayta malumot olish uchun  refetch mantigi, eng oxirgi
+	} = useQuery(GET_PROPERTIES, {  // 1-arg comanda(query) 2- option(variant)
+		fetchPolicy: 'cache-and-network', // eng muhumi...  cache + => network
+		variables: { input: initialInput }, // chaqirishmz kerak bo'lgan mantiqlar initialInputdan olamz
+		notifyOnNetworkStatusChange: true, // bydefolt false // qayta data o'zgarganda serverdan kelgan datani yangilash un
+		onCompleted: (data: T) => { // backentdan datani qabul qilganda amalga oshadigon mantiq
+			setTrendProperties(data?.getProperties?.list); // spesifik datani chaqirish yani faqat listni keshtan ajratib oldik
 		},
 	});
 
 	/** HANDLERS **/
-	const likePropertyHandler = async (user: T, id: string) => {
+	const likePropertyHandler = async (user: T, id: string) => { // auth bo'lgan user va like bosiladigon property id
 		try {
-			if (!id) return;
-			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED);
+			if (!id) return; // tanlangan id mavjudligini tekshramz
+			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED); // auth
 
 			// executed likeTargetProperty Mutation
-			await likeTargetProperty({
-				variables: { input: id },
+			await likeTargetProperty({ 
+				variables: { input: id }, // aynan qaysi propertyga like bosilganini id si
 			});
 
-			// executed getPropertiesRefetch
-			await getPropertiesRefetch({ input: initialInput });
+			// executed getPropertiesRefetch: backentdan oxirgi datani olamz, likelar sonini o'zgartramz
+			await getPropertiesRefetch({ input: initialInput }); // inputni initialInput qiymatida olamz
 
-			await sweetTopSmallSuccessAlert('success', 800);
+			await sweetTopSmallSuccessAlert('success', 800);  //elart chiqish vaqti
 		} catch (err: any) {
 			console.log('ERROR, likePropertyHandler:', err.message);
 			sweetMixinErrorAlert(err.message).then();
@@ -63,7 +63,7 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 	};
 
 	if (trendProperties) console.log('trendProperties:', trendProperties);
-	if (!trendProperties) return null;
+	if (!trendProperties) return null; // tekshiramz agar mantiq bo'lmasa null qaytaradi
 
 	if (device === 'mobile') {
 		return (
@@ -150,7 +150,7 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 	}
 };
 
-TrendProperties.defaultProps = {
+TrendProperties.defaultProps = { // defaultProps yuqorida ishlatish uchun
 	initialInput: {
 		page: 1,
 		limit: 8,

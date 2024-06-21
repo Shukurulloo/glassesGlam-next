@@ -11,8 +11,12 @@ import { Property } from '../../libs/types/property/property';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import { Direction } from '../../libs/enums/common.enum';
+import { useQuery } from '@apollo/client';
+import { GET_PROPERTIES } from '../../apollo/user/query';
+import { T } from '../../libs/types/common';
 
-export const getStaticProps = async ({ locale }: any) => ({ // agar bu qo'yilmasa til tarjima qilinmaydi
+export const getStaticProps = async ({ locale }: any) => ({
+	// agar bu qo'yilmasa til tarjima qilinmaydi
 	props: {
 		...(await serverSideTranslations(locale, ['common'])),
 	},
@@ -20,10 +24,10 @@ export const getStaticProps = async ({ locale }: any) => ({ // agar bu qo'yilmas
 
 const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 	const device = useDeviceDetect();
-	const router = useRouter();
+	const router = useRouter(); // qiymati o'zgarsa useEffect ishga tushadi
 	const [searchFilter, setSearchFilter] = useState<PropertiesInquiry>(
 		router?.query?.input ? JSON.parse(router?.query?.input as string) : initialInput,
-	);
+	); // agar qiymat bo'lsa parse qilib queryni ol aks holda initialni ol
 	const [properties, setProperties] = useState<Property[]>([]);
 	const [total, setTotal] = useState<number>(0);
 	const [currentPage, setCurrentPage] = useState<number>(1);
@@ -32,18 +36,37 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 	const [filterSortName, setFilterSortName] = useState('New');
 
 	/** APOLLO REQUESTS **/
+	const { // useQuery fazalarni olib beradi 
+		loading: getPropertiesLoading, // loading bo'lish jarayoni
+		data: getPropertiesData,  // data asosiy // bu kesh shuyerga saqlaymz
+		error: getPropertiesError, // data kirib kelgunga qadar error hosil bo'lsa
+		refetch: getPropertiesRefetch, // backentdan qayta malumot olish uchun  refetch mantigi, eng oxirgi
+	} = useQuery(GET_PROPERTIES, {  // 1-arg comanda(query) 2- option(variant)
+		fetchPolicy: 'network-only', // eng muhumi...  cache + => network
+		variables: { input: searchFilter }, // chaqirishmz kerak bo'lgan mantiqlar initialInputdan olamz
+		notifyOnNetworkStatusChange: true, // bydefolt false // qayta data o'zgarganda serverdan kelgan datani yangilash un
+		onCompleted: (data: T) => { // backentdan datani qabul qilganda amalga oshadigon mantiq
+			setProperties(data?.getProperties?.list); // spesifik datani chaqirish yani faqat listni keshtan ajratib oldik
+			setTotal(data?.getProperties?.metaCounter[0]?.total)
+		},
+	});
+
 
 	/** LIFECYCLES **/
 	useEffect(() => {
 		if (router.query.input) {
-			const inputObj = JSON.parse(router?.query?.input as string); //searchFilter mantiqlarni routerQuerydan yuklab oladi
-			setSearchFilter(inputObj);
+			// query paramsni qo'lga oldik
+			const inputObj = JSON.parse(router?.query?.input as string); // parse qilib jsndan objectga o'tkazamz
+			setSearchFilter(inputObj); //searchFilter mantiqlarni routerQuerydan yuklab oladi
 		}
 
 		setCurrentPage(searchFilter.page === undefined ? 1 : searchFilter.page);
-	}, [router]);
+	}, [router]); // router compdidmount ishlayapti
 
-	useEffect(() => {}, [searchFilter]);
+	useEffect(() => {
+		console.log('searchFilter:', searchFilter);
+		// getPropertiesRefetch({ input: searchFilter }).then();
+	}, [searchFilter]);
 
 	/** HANDLERS **/
 	const handlePaginationChange = async (event: ChangeEvent<unknown>, value: number) => {
@@ -173,7 +196,8 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 	}
 };
 
-PropertyList.defaultProps = { // query bo'lmasa bydefoult queryga yuklab beradi
+PropertyList.defaultProps = {
+	// query bo'lmasa bydefoult queryga yuklab beradi
 	initialInput: {
 		page: 1,
 		limit: 9,

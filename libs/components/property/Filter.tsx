@@ -29,7 +29,7 @@ const MenuProps = {
 };
 
 interface FilterType {
-	searchFilter: PropertiesInquiry;
+	searchFilter: PropertiesInquiry;// propertylar
 	setSearchFilter: any;
 	initialInput: PropertiesInquiry;
 }
@@ -45,57 +45,100 @@ const Filter = (props: FilterType) => {
 
 	/** LIFECYCLES **/
 	useEffect(() => {
-		const queryParams = JSON.stringify({
-			...searchFilter,
-			search: {
-				...searchFilter.search,
-			},
-		});
-
-		if (searchFilter?.search?.locationList?.length == 0) {
+		if (searchFilter?.search?.locationList?.length == 0) { // agar locationList tanlansa va 0 ga teng bo'lsa push ishga tushadi
 			delete searchFilter.search.locationList;
 			setShowMore(false);
-			router.push(`/property?input=${queryParams}`, `/property?input=${queryParams}`, { scroll: false }).then();
+			router.push(`/property?input=${JSON.stringify({
+				...searchFilter,
+				search: {
+					...searchFilter.search,
+				},
+			})}`, `/property?input=${JSON.stringify({
+				...searchFilter,
+				search: {
+					...searchFilter.search,
+				},
+			})}`, { scroll: false }).then();
 		}
 
 		if (searchFilter?.search?.typeList?.length == 0) {
 			delete searchFilter.search.typeList;
-			router.push(`/property?input=${queryParams}`, `/property?input=${queryParams}`, { scroll: false }).then();
+			router.push(`/property?input=${JSON.stringify({
+				...searchFilter,
+				search: {
+					...searchFilter.search,
+				},
+			})}`, `/property?input=${JSON.stringify({
+				...searchFilter,
+				search: {
+					...searchFilter.search,
+				},
+			})}`, { scroll: false }).then();
 		}
 
 		if (searchFilter?.search?.roomsList?.length == 0) {
 			delete searchFilter.search.roomsList;
-			router.push(`/property?input=${queryParams}`, `/property?input=${queryParams}`, { scroll: false }).then();
+			router.push(`/property?input=${JSON.stringify({
+				...searchFilter,
+				search: {
+					...searchFilter.search,
+				},
+			})}`, `/property?input=${JSON.stringify({
+				...searchFilter,
+				search: {
+					...searchFilter.search,
+				},
+			})}`, { scroll: false }).then();
 		}
 
 		if (searchFilter?.search?.options?.length == 0) {
 			delete searchFilter.search.options;
-			router.push(`/property?input=${queryParams}`, `/property?input=${queryParams}`, { scroll: false }).then();
+			router.push(`/property?input=${JSON.stringify({
+				...searchFilter,
+				search: {
+					...searchFilter.search,
+				},
+			})}`, `/property?input=${JSON.stringify({
+				...searchFilter,
+				search: {
+					...searchFilter.search,
+				},
+			})}`, { scroll: false }).then();
 		}
 
 		if (searchFilter?.search?.bedsList?.length == 0) {
 			delete searchFilter.search.bedsList;
-			router.push(`/property?input=${queryParams}`, `/property?input=${queryParams}`, { scroll: false }).then();
+			router.push(`/property?input=${JSON.stringify({
+				...searchFilter,
+				search: {
+					...searchFilter.search,
+				},
+			})}`, `/property?input=${JSON.stringify({
+				...searchFilter,
+				search: {
+					...searchFilter.search,
+				},
+			})}`, { scroll: false }).then();
 		}
 
 		if (searchFilter?.search?.locationList) setShowMore(true);
 	}, [searchFilter]);
 
-	/** HANDLERS **/
-	const propertyLocationSelectHandler = useCallback(
+	/** HANDLERS **/     // bu bror locatsiani tanlasak ishga tushadi
+	const propertyLocationSelectHandler = useCallback( //  useCallback oshiqcha rerender mantig'idan halos etadi
 		async (e: any) => {
 			try {
 				const isChecked = e.target.checked;
 				const value = e.target.value;
 				if (isChecked) {
-					await router.push(
-						`/property?input=${JSON.stringify({
+					await router.push(  // o'zgarayotgan query paramsni qiymatlarni hosil qildik
+						`/property?input=${JSON.stringify({ // /jsonga o'tkaz
 							...searchFilter,
 							search: { ...searchFilter.search, locationList: [...(searchFilter?.search?.locationList || []), value] },
 						})}`,
 						`/property?input=${JSON.stringify({
 							...searchFilter,
-							search: { ...searchFilter.search, locationList: [...(searchFilter?.search?.locationList || []), value] },
+							search: { ...searchFilter.search, locationList: [...(searchFilter?.search?.locationList || []), value] }, // locationListni mantig'ini o'zgartidik
 						})}`,
 						{ scroll: false },
 					);
@@ -136,7 +179,7 @@ const Filter = (props: FilterType) => {
 			try {
 				const isChecked = e.target.checked;
 				const value = e.target.value;
-				if (isChecked) {
+				if (isChecked) { // agar tanlansa shu ishga tushadi
 					await router.push(
 						`/property?input=${JSON.stringify({
 							...searchFilter,
@@ -510,7 +553,7 @@ const Filter = (props: FilterType) => {
 							}
 						}}
 					>
-						{propertyLocation.map((location: string) => {
+						{propertyLocation.map((location: string) => { // locatsialar
 							return (
 								<Stack className={'input-box'} key={location}>
 									<Checkbox
@@ -519,7 +562,7 @@ const Filter = (props: FilterType) => {
 										color="default"
 										size="small"
 										value={location}
-										checked={(searchFilter?.search?.locationList || []).includes(location as PropertyLocation)}
+										checked={(searchFilter?.search?.locationList || []).includes(location as PropertyLocation)}// 
 										onChange={propertyLocationSelectHandler}
 									/>
 									<label htmlFor={location} style={{ cursor: 'pointer' }}>
