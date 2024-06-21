@@ -27,7 +27,7 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { GET_PROPERTIES, GET_PROPERTY } from '../../apollo/user/query';
+import { GET_COMMENTS, GET_PROPERTIES, GET_PROPERTY } from '../../apollo/user/query';
 import { T } from '../../libs/types/common';
 import { Direction, Message } from '../../libs/enums/common.enum';
 import { LIKE_TARGET_PROPERTY } from '../../apollo/user/mutation';
@@ -93,7 +93,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 				sort: 'createdAt',
 				direction: Direction.DESC,
 				search: {
-					locationList: [property?.propertyLocation], // propertyLocationga teng hammasini olob ber
+					locationList: property?.propertyLocation ? [property?.propertyLocation] : [], // propertyLocationga teng hammasini olob ber
 				},
 			},
 		},
@@ -102,6 +102,23 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 		onCompleted: (data: T) => {
 			// backentdan datani qabul qilganda amalga oshadigon mantiq
 			if (data?.getProperties?.list) setDestinationProperties(data?.getProperties?.list); // spesifik datani chaqirish yani faqat listni keshtan ajratib oldik
+		},
+	});
+
+	const {
+		loading: getCommentsLoading, // loading bo'lish jarayoni
+		data: getCommentsData, // data asosiy // bu kesh shuyerga saqlaymz
+		error: getCommentsError, // data kirib kelgunga qadar error hosil bo'lsa
+		refetch: getCommentsRefetch, // backentdan qayta malumot olish uchun  refetch mantigi, eng oxirgi
+	} = useQuery(GET_COMMENTS, {
+		fetchPolicy: 'network-only', // eng muhumi...  cache + => network
+		variables: { input: initialComment },
+		skip: !commentInquiry.search.commentRefId,
+		notifyOnNetworkStatusChange: true, // bydefolt false // qayta data o'zgarganda serverdan kelgan datani yangilash un
+		onCompleted: (data: T) => {
+			// backentdan datani qabul qilganda amalga oshadigon mantiq
+			if (data?.getComments?.list) setPropertyComments(data?.getComments?.list); // spesifik datani chaqirish yani faqat listni keshtan ajratib oldik
+			setCommentTotal(data?.getComments?.metaCounter[0]?.total ?? 0); // bo'lsa 0dagini daani ol bolmasi 0ni ol
 		},
 	});
 
@@ -122,7 +139,11 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 		}
 	}, [router]);
 
-	useEffect(() => {}, [commentInquiry]);
+	useEffect(() => {
+		if (commentInquiry.search.commentRefId) {
+			getCommentsRefetch({ input: commentInquiry });
+		}
+	}, [commentInquiry]);
 
 	/** HANDLERS **/
 	const changeImageHandler = (image: string) => {
