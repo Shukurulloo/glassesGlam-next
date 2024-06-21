@@ -10,10 +10,12 @@ import { PropertiesInquiry } from '../../libs/types/property/property.input';
 import { Property } from '../../libs/types/property/property';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import { Direction } from '../../libs/enums/common.enum';
-import { useQuery } from '@apollo/client';
+import { Direction, Message } from '../../libs/enums/common.enum';
+import { useMutation, useQuery } from '@apollo/client';
 import { GET_PROPERTIES } from '../../apollo/user/query';
 import { T } from '../../libs/types/common';
+import { LIKE_TARGET_PROPERTY } from '../../apollo/user/mutation';
+import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	// agar bu qo'yilmasa til tarjima qilinmaydi
@@ -36,6 +38,8 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 	const [filterSortName, setFilterSortName] = useState('New');
 
 	/** APOLLO REQUESTS **/
+	const [likeTargetProperty] = useMutation(LIKE_TARGET_PROPERTY);
+	
 	const { // useQuery fazalarni olib beradi 
 		loading: getPropertiesLoading, // loading bo'lish jarayoni
 		data: getPropertiesData,  // data asosiy // bu kesh shuyerga saqlaymz
@@ -79,6 +83,26 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 			},
 		);
 		setCurrentPage(value);
+	};
+
+	const likePropertyHandler = async (user: T, id: string) => { // auth bo'lgan user va like bosiladigon property id
+		try {
+			if (!id) return; // tanlangan id mavjudligini tekshramz
+			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED); // auth
+
+			// executed likeTargetProperty Mutation
+			await likeTargetProperty({ 
+				variables: { input: id }, // aynan qaysi propertyga like bosilganini id si
+			});
+
+			// executed getPropertiesRefetch: backentdan oxirgi datani olamz, likelar sonini o'zgartramz
+			await getPropertiesRefetch({ input: initialInput }); // inputni initialInput qiymatida olamz
+
+			await sweetTopSmallSuccessAlert('success', 800);  //elart chiqish vaqti
+		} catch (err: any) {
+			console.log('ERROR, likePropertyHandler:', err.message);
+			sweetMixinErrorAlert(err.message).then();
+		}
 	};
 
 	const sortingClickHandler = (e: MouseEvent<HTMLElement>) => {
@@ -163,7 +187,7 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 									</div>
 								) : (
 									properties.map((property: Property) => {
-										return <PropertyCard property={property} key={property?._id} />;
+										return <PropertyCard property={property} likePropertyHandler={likePropertyHandler} key={property?._id} />;
 									})
 								)}
 							</Stack>
