@@ -11,7 +11,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import WestIcon from '@mui/icons-material/West';
 import EastIcon from '@mui/icons-material/East';
-import { useQuery, useReactiveVar } from '@apollo/client';
+import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { Property } from '../../libs/types/property/property';
 import moment from 'moment';
@@ -29,7 +29,9 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { GET_PROPERTIES, GET_PROPERTY } from '../../apollo/user/query';
 import { T } from '../../libs/types/common';
-import { Direction } from '../../libs/enums/common.enum';
+import { Direction, Message } from '../../libs/enums/common.enum';
+import { LIKE_TARGET_PROPERTY } from '../../apollo/user/mutation';
+import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
 
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
@@ -57,6 +59,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 	});
 
 	/** APOLLO REQUESTS **/
+	const [likeTargetProperty] = useMutation(LIKE_TARGET_PROPERTY);
 
 	const {
 		loading: getPropertyLoading,
@@ -69,32 +72,36 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 		skip: !propertyId, // agar propertyId bo'lmasa queryni skip qil yani request qilmay tur. propertyIdni qiymatni qayta olib bermasligi uchun
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			if(data?.getProperty) setProperty(data?.getProperty);
-			if(data?.getProperty) setSlideImage(data?.getProperty?.propertyImages[0]); // 0-indexdagi imgni olib ber
+			if (data?.getProperty) setProperty(data?.getProperty);
+			if (data?.getProperty) setSlideImage(data?.getProperty?.propertyImages[0]); // 0-indexdagi imgni olib ber
 		},
 	});
 
-
-	const { // useQuery fazalarni olib beradi 
+	const {
+		// useQuery fazalarni olib beradi
 		loading: getPropertiesLoading, // loading bo'lish jarayoni
-		data: getPropertiesData,  // data asosiy // bu kesh shuyerga saqlaymz
+		data: getPropertiesData, // data asosiy // bu kesh shuyerga saqlaymz
 		error: getPropertiesError, // data kirib kelgunga qadar error hosil bo'lsa
 		refetch: getPropertiesRefetch, // backentdan qayta malumot olish uchun  refetch mantigi, eng oxirgi
-	} = useQuery(GET_PROPERTIES, {  // 1-arg comanda(query) 2- option(variant)
+	} = useQuery(GET_PROPERTIES, {
+		// 1-arg comanda(query) 2- option(variant)
 		fetchPolicy: 'cache-and-network', // eng muhumi...  cache + => network
-		variables: { input: {
-			page: 1,
-			limit: 4,
-			sort: "createdAt",
-			direction: Direction.DESC,
-			search: {
-				locationList: [property?.propertyLocation] // propertyLocationga teng hammasini olob ber
-			}
-		} },
+		variables: {
+			input: {
+				page: 1,
+				limit: 4,
+				sort: 'createdAt',
+				direction: Direction.DESC,
+				search: {
+					locationList: [property?.propertyLocation], // propertyLocationga teng hammasini olob ber
+				},
+			},
+		},
 		skip: !propertyId && !property,
 		notifyOnNetworkStatusChange: true, // bydefolt false // qayta data o'zgarganda serverdan kelgan datani yangilash un
-		onCompleted: (data: T) => { // backentdan datani qabul qilganda amalga oshadigon mantiq
-			if(data?.getProperties?.list) setDestinationProperties(data?.getProperties?.list); // spesifik datani chaqirish yani faqat listni keshtan ajratib oldik
+		onCompleted: (data: T) => {
+			// backentdan datani qabul qilganda amalga oshadigon mantiq
+			if (data?.getProperties?.list) setDestinationProperties(data?.getProperties?.list); // spesifik datani chaqirish yani faqat listni keshtan ajratib oldik
 		},
 	});
 
@@ -120,6 +127,39 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 	/** HANDLERS **/
 	const changeImageHandler = (image: string) => {
 		setSlideImage(image); // image ga bossa o'shani ko'rstadi
+	};
+
+	const likePropertyHandler = async (user: T, id: string) => {
+		// auth bo'lgan user va like bosiladigon property id
+		try {
+			if (!id) return; // tanlangan id mavjudligini tekshramz
+			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED); // auth
+
+			// executed likeTargetProperty Mutation
+			await likeTargetProperty({
+				variables: { input: id }, // aynan qaysi propertyga like bosilganini id si
+			});
+
+			await getPropertyRefetch({ input: id });
+
+			// executed getPropertiesRefetch: backentdan oxirgi datani olamz, likelar sonini o'zgartramz
+			await getPropertiesRefetch({
+				input: {
+					page: 1,
+					limit: 4,
+					sort: 'createdAt',
+					direction: Direction.DESC,
+					search: {
+						locationList: [property?.propertyLocation], // propertyLocationga teng hammasini olob ber
+					},
+				},
+			}); // inputni initialInput qiymatida olamz
+
+			await sweetTopSmallSuccessAlert('success', 800); //elart chiqish vaqti
+		} catch (err: any) {
+			console.log('ERROR, likePropertyHandler:', err.message);
+			sweetMixinErrorAlert(err.message).then();
+		}
 	};
 
 	const commentPaginationChangeHandler = async (event: ChangeEvent<unknown>, value: number) => {
@@ -560,7 +600,11 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 										{destinationProperties.map((property: Property) => {
 											return (
 												<SwiperSlide className={'similar-homes-slide'} key={property.propertyTitle}>
-													<PropertyBigCard property={property} key={property?._id} />
+													<PropertyBigCard
+														property={property}
+														likePropertyHandler={likePropertyHandler}
+														key={property?._id}
+													/>
 												</SwiperSlide>
 											);
 										})}
