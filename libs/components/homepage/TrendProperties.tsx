@@ -19,7 +19,7 @@ interface TrendPropertiesProps {
 	initialInput: PropertiesInquiry;
 }
 
-const TrendProperties = (props: TrendPropertiesProps) => {
+const  TrendProperties = (props: TrendPropertiesProps) => {
 	const { initialInput } = props;
 	const device = useDeviceDetect();
 	const [trendProperties, setTrendProperties] = useState<Property[]>([]);
