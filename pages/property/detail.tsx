@@ -11,7 +11,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import WestIcon from '@mui/icons-material/West';
 import EastIcon from '@mui/icons-material/East';
-import { useReactiveVar } from '@apollo/client';
+import { useQuery, useReactiveVar } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { Property } from '../../libs/types/property/property';
 import moment from 'moment';
@@ -27,6 +27,9 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { GET_PROPERTIES, GET_PROPERTY } from '../../apollo/user/query';
+import { T } from '../../libs/types/common';
+import { Direction } from '../../libs/enums/common.enum';
 
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
@@ -40,10 +43,10 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const user = useReactiveVar(userVar);
-	const [propertyId, setPropertyId] = useState<string | null>(null);
+	const [propertyId, setPropertyId] = useState<string | null>(null); // boshlang'ich qiymati null
 	const [property, setProperty] = useState<Property | null>(null);
 	const [slideImage, setSlideImage] = useState<string>('');
-	const [destinationProperty, setDestinationProperty] = useState<Property[]>([]);
+	const [destinationProperties, setDestinationProperties] = useState<Property[]>([]); //
 	const [commentInquiry, setCommentInquiry] = useState<CommentsInquiry>(initialComment);
 	const [propertyComments, setPropertyComments] = useState<Comment[]>([]);
 	const [commentTotal, setCommentTotal] = useState<number>(0);
@@ -54,6 +57,46 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 	});
 
 	/** APOLLO REQUESTS **/
+
+	const {
+		loading: getPropertyLoading,
+		data: getPropertyData,
+		error: getPropertyError,
+		refetch: getPropertyRefetch,
+	} = useQuery(GET_PROPERTY, {
+		fetchPolicy: 'cache-and-network',
+		variables: { input: propertyId },
+		skip: !propertyId, // agar propertyId bo'lmasa queryni skip qil yani request qilmay tur. propertyIdni qiymatni qayta olib bermasligi uchun
+		notifyOnNetworkStatusChange: true,
+		onCompleted: (data: T) => {
+			if(data?.getProperty) setProperty(data?.getProperty);
+			if(data?.getProperty) setSlideImage(data?.getProperty?.propertyImages[0]); // 0-indexdagi imgni olib ber
+		},
+	});
+
+
+	const { // useQuery fazalarni olib beradi 
+		loading: getPropertiesLoading, // loading bo'lish jarayoni
+		data: getPropertiesData,  // data asosiy // bu kesh shuyerga saqlaymz
+		error: getPropertiesError, // data kirib kelgunga qadar error hosil bo'lsa
+		refetch: getPropertiesRefetch, // backentdan qayta malumot olish uchun  refetch mantigi, eng oxirgi
+	} = useQuery(GET_PROPERTIES, {  // 1-arg comanda(query) 2- option(variant)
+		fetchPolicy: 'cache-and-network', // eng muhumi...  cache + => network
+		variables: { input: {
+			page: 1,
+			limit: 4,
+			sort: "createdAt",
+			direction: Direction.DESC,
+			search: {
+				locationList: [property?.propertyLocation] // propertyLocationga teng hammasini olob ber
+			}
+		} },
+		skip: !propertyId && !property,
+		notifyOnNetworkStatusChange: true, // bydefolt false // qayta data o'zgarganda serverdan kelgan datani yangilash un
+		onCompleted: (data: T) => { // backentdan datani qabul qilganda amalga oshadigon mantiq
+			if(data?.getProperties?.list) setDestinationProperties(data?.getProperties?.list); // spesifik datani chaqirish yani faqat listni keshtan ajratib oldik
+		},
+	});
 
 	/** LIFECYCLES **/
 	useEffect(() => {
@@ -76,7 +119,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 
 	/** HANDLERS **/
 	const changeImageHandler = (image: string) => {
-		setSlideImage(image);
+		setSlideImage(image); // image ga bossa o'shani ko'rstadi
 	};
 
 	const commentPaginationChangeHandler = async (event: ChangeEvent<unknown>, value: number) => {
@@ -487,7 +530,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 								</Stack>
 							</Stack>
 						</Stack>
-						{destinationProperty.length !== 0 && (
+						{destinationProperties.length !== 0 && (
 							<Stack className={'similar-properties-config'}>
 								<Stack className={'title-pagination-box'}>
 									<Stack className={'title-box'}>
@@ -514,7 +557,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 											el: '.swiper-similar-pagination',
 										}}
 									>
-										{destinationProperty.map((property: Property) => {
+										{destinationProperties.map((property: Property) => {
 											return (
 												<SwiperSlide className={'similar-homes-slide'} key={property.propertyTitle}>
 													<PropertyBigCard property={property} key={property?._id} />

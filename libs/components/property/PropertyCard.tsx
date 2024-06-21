@@ -6,7 +6,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Property } from '../../types/property/property';
 import Link from 'next/link';
 import { formatterStr } from '../../utils';
-import { REACT_APP_API_URL } from '../../config';
+import { REACT_APP_API_URL, topPropertyRank } from '../../config';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import IconButton from '@mui/material/IconButton';
@@ -36,12 +36,12 @@ const PropertyCard = (props: PropertyCardType) => {
 					<Link
 						href={{
 							pathname: '/property/detail',
-							query: { id: property?._id },
+							query: { id: property?._id }, // tanlangan property idni idga tenglab yuqoridagi url linkga joylab beradi
 						}}
 					>
 						<img src={imagePath} alt="" />
 					</Link>
-					{property && property?.propertyRank > 0 && (
+					{property && property?.propertyRank > topPropertyRank && (
 						<Box component={'div'} className={'top-badge'}>
 							<img src="/img/icons/electricity.svg" alt="" />
 							<Typography>TOP</Typography>
