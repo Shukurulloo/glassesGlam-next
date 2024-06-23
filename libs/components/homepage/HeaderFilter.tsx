@@ -277,7 +277,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 		});
 	};
 
-	const resetFilterHandler = () => {
+	const FilterHandler = () => {
 		setSearchFilter(initialInput);
 		setOptionCheck('all');
 		setYearCheck({ start: 1970, end: thisYear });
@@ -542,7 +542,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 							</div>
 							<Divider sx={{ mt: '60px', mb: '18px' }} />
 							<div className={'bottom'}>
-								<div onClick={resetFilterHandler}>
+								<div onClick={FilterHandler}>
 									<img src="/img/icons/reset.svg" alt="" />
 									<span>Reset all filters</span>
 								</div>
