@@ -3,11 +3,13 @@ import { NextPage } from 'next';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { Button, Stack, Typography } from '@mui/material';
 import axios from 'axios';
-import { REACT_APP_API_URL } from '../../config';
-import { getJwtToken } from '../../auth';
-import { useReactiveVar } from '@apollo/client';
+import { Messages, REACT_APP_API_URL } from '../../config';
+import { getJwtToken, updateStorage, updateUserInfo } from '../../auth';
+import { useMutation, useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { MemberUpdate } from '../../types/member/member.update';
+import { UPDATE_MEMBER } from '../../../apollo/user/mutation';
+import { sweetErrorHandling, sweetMixinSuccessAlert } from '../../sweetAlert';
 
 const MyProfile: NextPage = ({ initialValues, ...props }: any) => {
 	const device = useDeviceDetect();
@@ -16,12 +18,13 @@ const MyProfile: NextPage = ({ initialValues, ...props }: any) => {
 	const [updateData, setUpdateData] = useState<MemberUpdate>(initialValues);
 
 	/** APOLLO REQUESTS **/
+	const [updateMember] = useMutation(UPDATE_MEMBER);
 
 	/** LIFECYCLES **/
 	useEffect(() => {
-		setUpdateData({
+		setUpdateData({ // auth orqali qurilgan  reactive variabelalar qiymatini beramz shunda edit bosilsa oldingi datasi chiqadi
 			...updateData,
-			memberNick: user.memberNick,
+			memberNick: user.memberNick, 
 			memberPhone: user.memberPhone,
 			memberAddress: user.memberAddress,
 			memberImage: user.memberImage,
@@ -34,7 +37,7 @@ const MyProfile: NextPage = ({ initialValues, ...props }: any) => {
 			const image = e.target.files[0];
 			console.log('+image:', image);
 
-			const formData = new FormData();
+			const formData = new FormData(); // formdata clientdan backentga file yuborish uchun
 			formData.append(
 				'operations',
 				JSON.stringify({
@@ -55,26 +58,45 @@ const MyProfile: NextPage = ({ initialValues, ...props }: any) => {
 			);
 			formData.append('0', image);
 
-			const response = await axios.post(`${process.env.REACT_APP_API_GRAPHQL_URL}`, formData, {
-				headers: {
+			const response = await axios.post(`${process.env.REACT_APP_API_GRAPHQL_URL}`, formData, {// axios: .envdagi 3007ga post qildik. formData= body
+				headers: {// option qismida kim frontenddan backentga request qilayotganini ko'rstatdi
 					'Content-Type': 'multipart/form-data',
 					'apollo-require-preflight': true,
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${token}`, // apolloni ishlatmaganimiz uchun berarTokeni provide qilamz
 				},
 			});
 
 			const responseImage = response.data.data.imageUploader;
 			console.log('+responseImage: ', responseImage);
 			updateData.memberImage = responseImage;
-			setUpdateData({ ...updateData });
+			setUpdateData({ ...updateData }); // setUpdateDatani ichidagi memberImage qiymatini yangilaymz shunda hamma imglar o'zgaradi
 
-			return `${REACT_APP_API_URL}/${responseImage}`;
+			return `${REACT_APP_API_URL}/${responseImage}`; // backentdan kelgan imgni linkini return qildik
 		} catch (err) {
 			console.log('Error, uploadImage:', err);
 		}
 	};
 
-	const updatePropertyHandler = useCallback(async () => {}, [updateData]);
+	const updatePropertyHandler = useCallback(async () => {
+		try {
+			if (!user._id) throw new Error(Messages.error2); // auht
+			updateData._id = user._id;
+			// buttton bosilin bu handler ishga tushsa updateDatani qiymatidan foydalanib updateMember comandasini execut qilamz
+			const result = await updateMember({ 
+				variables: {
+					input: updateData, // biz yangilagan updateDatani qiymatini beramz
+				},
+			});
+
+			// @ts-ignore
+			const jwtToken = result.data.updateMember?.accessToken; // tokkeni yangilab olamz chunki
+			await updateStorage({ jwtToken }); // yangi tokkeni beramz bu localStorydagi datani yangilayd
+			updateUserInfo(result.data.updateMember?.accessToken); // updateUserInfo tokkeni olib reactive variableniham yabgilaydi. natijada edit qilib shunga oid hammayerdagi data yabgilanadi
+			await sweetMixinSuccessAlert('information updated successfully.');
+		} catch (err: any) {
+			await sweetErrorHandling(err).then();
+		}
+	}, [updateData]); // updateData ishga tushsa callback execut boladi
 
 	const doDisabledCheck = () => {
 		if (

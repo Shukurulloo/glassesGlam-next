@@ -121,8 +121,8 @@ const requestSignUpJwtToken = async ({
 };
 
 export const updateStorage = ({ jwtToken }: { jwtToken: any }) => {
-	setJwtToken(jwtToken);
-	window.localStorage.setItem('login', Date.now().toString());
+	setJwtToken(jwtToken); // tokkeni yangilaymz
+	window.localStorage.setItem('login', Date.now().toString()); // local storydagi login bo'lgan datani o'zgartirmaz
 };
 
 export const updateUserInfo = (jwtToken: any) => {
