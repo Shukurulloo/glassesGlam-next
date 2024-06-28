@@ -6,6 +6,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { onError } from '@apollo/client/link/error';
 import { getJwtToken } from '../libs/auth';
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
+import { sweetErrorAlert } from '../libs/sweetAlert';
 let apolloClient: ApolloClient<NormalizedCacheObject>; // apolloclient create bo'lsa shunga auto briktriladi
 
 /** bu dokumentationdan yeg'ib chiqilgan mantiqlar */
@@ -65,9 +66,11 @@ function createIsomorphicLink() {
 		*/
 		const errorLink = onError(({ graphQLErrors, networkError, response }) => {
 			if (graphQLErrors) {
-				graphQLErrors.map(({ message, locations, path, extensions }) =>
-					console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`),
-				);
+				graphQLErrors.map(({ message, locations, path, extensions }) => {
+					console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`);
+					if(!message.includes("input")) sweetErrorAlert(message) // tarkibida input bo'lmagan messagelar kelsa shu messageni chiqar
+
+				});
 			}
 			if (networkError) console.log(`[Network error]: ${networkError}`);
 			// @ts-ignore
