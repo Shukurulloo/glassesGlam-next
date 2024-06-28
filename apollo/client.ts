@@ -29,6 +29,36 @@ const tokenRefreshLink = new TokenRefreshLink({
 		return null;
 	},
 });
+// Custom WebSocket client
+class LoggingWebSocket {
+	private socket: WebSocket;
+
+	constructor(url: string) { // uri
+		this.socket = new WebSocket(url);
+
+		// this.socket = new WebSocket(`${url}?token=${getJwtToken()}`);
+		// socketVar(this.socket);
+
+		this.socket.onopen = () => { //ulansa
+			console.log('WebSocket connection!');
+		};
+
+		this.socket.onmessage = (msg) => { // habar kelsa
+			console.log('WebSocket message:', msg.data);
+		};
+
+		this.socket.onerror = (error) => {
+			console.log('WebSocket, error:', error);
+		};
+	}
+	send(data: string | ArrayBuffer | SharedArrayBuffer | Blob | ArrayBufferView) {
+		this.socket.send(data); // serverga malumot yuborish
+	}
+
+	close() {
+		this.socket.close();
+	}
+}
 
 function createIsomorphicLink() {
 	if (typeof window !== 'undefined') { // client site rendering bo'ganda ishga tushsin deymz. undefined SSRda boladi
@@ -58,6 +88,7 @@ function createIsomorphicLink() {
 					return { headers: getHeaders() };
 				},
 			},
+			webSocketImpl: LoggingWebSocket
 		});
 
 		/* errorni client 2 xil handling qiladi 
