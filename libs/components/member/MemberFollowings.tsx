@@ -31,21 +31,24 @@ const MemberFollowings = (props: MemberFollowingsProps) => {
 	const user = useReactiveVar(userVar);
 
 	/** APOLLO REQUESTS **/
-	const {
-		loading: getMemberFollowingsLoading,
-		data: getMemberFollowingsData,
-		error: getMemberFollowingsError,
-		refetch: getMemberFollowingsRefetch,
-	} = useQuery(GET_MEMBER_FOLLOWINGS, {
-		fetchPolicy: 'network-only',
-		variables: { input: followInquiry },
-		skip: !followInquiry?.search?.followingId,
-		notifyOnNetworkStatusChange: true,
-		onCompleted: (data: T) => {
-			setMemberFollowings(data?.getMemberFollowings?.list);
-			setTotal(data?.getMemberFollowings?.metaCounter[0]?.total);
-		},
-	});
+		const {
+			loading: getMemberFollowingsLoading,
+			data:  getMemberFollowingsData,
+			error: getMemberFollowersError,
+			refetch: getMemberFollowingsRefetch,
+		} = useQuery(GET_MEMBER_FOLLOWINGS, {
+			fetchPolicy: 'network-only',
+			variables: {
+				input: followInquiry,
+			},
+			skip: !followInquiry?.search?.followerId,
+			notifyOnNetworkStatusChange: true,
+			onCompleted(data: T) {
+				setMemberFollowings(data.getMemberFollowings?.list);
+				setTotal(data.getMemberFollowings?.metaCounter?.[0]?.total);
+			},
+		});
+
 
 	/** LIFECYCLES **/
 	useEffect(() => {

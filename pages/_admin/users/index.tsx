@@ -16,6 +16,10 @@ import { Member } from '../../../libs/types/member/member';
 import { MemberStatus, MemberType } from '../../../libs/enums/member.enum';
 import { sweetErrorHandling } from '../../../libs/sweetAlert';
 import { MemberUpdate } from '../../../libs/types/member/member.update';
+import { useMutation, useQuery } from '@apollo/client';
+import { UPDATE_MEMBER_BY_ADMIN } from '../../../apollo/admin/mutation';
+import { GET_ALL_MEMBERS_BY_ADMIN } from '../../../apollo/admin/query';
+import { T } from '../../../libs/types/common';
 
 const AdminUsers: NextPage = ({ initialInquiry, ...props }: any) => {
 	const [anchorEl, setAnchorEl] = useState<[] | HTMLElement[]>([]);
@@ -29,13 +33,35 @@ const AdminUsers: NextPage = ({ initialInquiry, ...props }: any) => {
 	const [searchType, setSearchType] = useState('ALL');
 
 	/** APOLLO REQUESTS **/
+	const [updateMemberByAdmin] = useMutation(UPDATE_MEMBER_BY_ADMIN);
+
+	const {
+		loading: getAllMembersByAdminLoading,
+		data: getAllMembersByAdminData,
+		error: getAllMembersByAdminError,
+		refetch: getAllMembersRefetch,
+	} = useQuery(GET_ALL_MEMBERS_BY_ADMIN, {
+		fetchPolicy: 'network-only',
+		variables: {
+			input: membersInquiry,
+		},
+		notifyOnNetworkStatusChange: true,
+		onCompleted(data: T) {
+			setMembers(data.getAllMembersByAdmin?.list);
+			setMembersTotal(data.getAllMembersByAdmin?.metaCounter?.[0]?.total ?? 0);
+		},
+	});
 
 	/** LIFECYCLES **/
-	useEffect(() => {}, [membersInquiry]);
+	useEffect(() => {
+		getAllMembersRefetch({ input: membersInquiry }).then();
+	}, [membersInquiry]); // membersInquiry ozgarsa ishga tushadi yani search, all, active kabilar bosilsa
 
 	/** HANDLERS **/
 	const changePageHandler = async (event: unknown, newPage: number) => {
+		// page o'zgarsa ishga tushadi, har bir pageda nechta ko'rinishini kiritish mantig'i
 		membersInquiry.page = newPage + 1;
+		await getAllMembersRefetch({ input: membersInquiry });
 		setMembersInquiry({ ...membersInquiry });
 	};
 
@@ -80,7 +106,13 @@ const AdminUsers: NextPage = ({ initialInquiry, ...props }: any) => {
 
 	const updateMemberHandler = async (updateData: MemberUpdate) => {
 		try {
+			await updateMemberByAdmin({
+				variables: {
+					input: updateData,
+				},
+			});
 			menuIconCloseHandler();
+			await getAllMembersRefetch({ input: membersInquiry });
 		} catch (err: any) {
 			sweetErrorHandling(err).then();
 		}
@@ -191,10 +223,11 @@ const AdminUsers: NextPage = ({ initialInquiry, ...props }: any) => {
 														setMembersInquiry({
 															...membersInquiry,
 															search: {
-																...membersInquiry.search,
+																...membersInquiry.search, 
 																text: '',
 															},
-														});
+														});// searchda bitta harf s kabini kritsa hamma s borlar ko'rinadi
+														await getAllMembersRefetch({ input: membersInquiry });
 													}}
 												/>
 											)}
