@@ -11,6 +11,7 @@ import { useReactiveVar } from '@apollo/client';
 import { socketVar, userVar } from '../../apollo/store';
 import { Messages, REACT_APP_API_URL } from '../config';
 import { sweetErrorAlert } from '../sweetAlert';
+import { Member } from '../types/member/member';
 
 const NewMessage = (type: any) => {
 	if (type === 'right') {
