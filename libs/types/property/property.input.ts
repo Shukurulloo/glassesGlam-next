@@ -1,33 +1,28 @@
-import { PropertyLocation, PropertyStatus, PropertyType } from '../../enums/property.enum';
+import {  PropertyColor, PropertyGlass, PropertySize, PropertyStatus, PropertyType } from '../../enums/property.enum';
 import { Direction } from '../../enums/common.enum';
 
 export interface PropertyInput {
 	propertyType: PropertyType;
-	propertyLocation: PropertyLocation;
+	propertyGlass: PropertyGlass;
+	propertySize:PropertySize;
+    propertyColor:PropertyColor
 	propertyAddress: string;
 	propertyTitle: string;
 	propertyPrice: number;
-	propertySquare: number;
-	propertyBeds: number;
-	propertyRooms: number;
 	propertyImages: string[];
 	propertyDesc?: string;
-	propertyBarter?: boolean;
-	propertyRent?: boolean;
 	memberId?: string;
-	constructedAt?: Date;
+
 }
 
 interface PISearch {
 	memberId?: string;
-	locationList?: PropertyLocation[];
 	typeList?: PropertyType[];
-	roomsList?: Number[];
-	options?: string[];
-	bedsList?: Number[];
+	glassList?: PropertyGlass[];
+	sizeList?: PropertySize[];
+	colorList?: PropertyColor[];
 	pricesRange?: Range;
 	periodsRange?: PeriodsRange;
-	squaresRange?: Range;
 	text?: string;
 }
 
@@ -53,7 +48,10 @@ export interface AgentPropertiesInquiry {
 
 interface ALPISearch {
 	propertyStatus?: PropertyStatus;
-	propertyLocationList?: PropertyLocation[];
+	typeList?: PropertyType[];
+	glassList?: PropertyGlass[];
+	sizeList?: PropertySize[];
+	colorList?: PropertyColor[];
 }
 
 export interface AllPropertiesInquiry {
@@ -73,3 +71,65 @@ interface PeriodsRange {
 	start: Date | number;
 	end: Date | number;
 }
+
+
+
+
+// import { registerEnumType } from '@nestjs/graphql';
+
+// export enum PropertyType {
+// 	MEN = 'MEN',
+// 	WOMEN = 'WOMEN',
+// 	UNISEX = 'UNISEX',
+// 	KIDS = 'KIDS',
+// }
+// registerEnumType(PropertyType, {
+// 	name: 'PropertyType',
+// });
+
+// export enum PropertyStatus {
+// 	ACTIVE = 'ACTIVE',
+// 	SOLD = 'SOLD',
+// 	DELETE = 'DELETE',
+// }
+// registerEnumType(PropertyStatus, {
+// 	name: 'PropertyStatus',
+// });
+
+// export enum PropertyGlass {
+// 	SUN_GLASSES = 'SUNGLASSES',
+// 	READING_GLASSES = 'READING_GLASSES',
+// 	POLARIZED_GLASSES = 'POLARIZED_GLASSES',
+// 	SPORTS_GLASSES = 'SPORTS_GLASSES',
+// 	FASHION_GLASSES = 'FASHION_GLASSES',
+// }
+// registerEnumType(PropertyGlass, {
+// 	name: 'PropertyGlass',
+// });
+
+// export enum PropertySize {
+// 	SMALL = 'SMALL',
+// 	MEDIUM = 'MEDIUM',
+// 	LARGE = 'LARGE',
+// 	EXTRA_LARGE = 'EXTRA_LARGE',
+// }
+// registerEnumType(PropertySize, {
+// 	name: 'PropertySize',
+// });
+
+// export enum PropertyColor {
+// 	BLACK = 'BLACK',
+// 	WHITE = 'WHITE',
+// 	BROWN = 'BROWN', //JIGARRANG
+// 	BLUE = 'BLUE',
+// 	RED = 'RED',
+// 	GREEN = 'GREEN',
+// 	YELLOW = 'YELLOW',
+// 	GRAY = 'GRAY',
+// 	SILVER = 'SILVER',
+// 	GOLD = 'GOLD',
+// }
+// registerEnumType(PropertyColor, {
+// 	name: 'PropertyColor',
+// });
+

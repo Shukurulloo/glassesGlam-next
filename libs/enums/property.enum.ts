@@ -1,8 +1,12 @@
+
+
 export enum PropertyType {
-	APARTMENT = 'APARTMENT',
-	VILLA = 'VILLA',
-	HOUSE = 'HOUSE',
+	MEN = 'MEN',
+	WOMEN = 'WOMEN',
+	KIDS = 'KIDS',
+	UNISEX = 'UNISEX',
 }
+
 
 export enum PropertyStatus {
 	ACTIVE = 'ACTIVE',
@@ -10,14 +14,34 @@ export enum PropertyStatus {
 	DELETE = 'DELETE',
 }
 
-export enum PropertyLocation {
-	SEOUL = 'SEOUL',
-	BUSAN = 'BUSAN',
-	INCHEON = 'INCHEON',
-	DAEGU = 'DAEGU',
-	GYEONGJU = 'GYEONGJU',
-	GWANGJU = 'GWANGJU',
-	CHONJU = 'CHONJU',
-	DAEJON = 'DAEJON',
-	JEJU = 'JEJU',
+
+export enum PropertyGlass {
+	SUN_GLASSES = 'SUNGLASSES',
+	READING_GLASSES = 'READING_GLASSES',
+	POLARIZED_GLASSES = 'POLARIZED_GLASSES',
+	SPORTS_GLASSES = 'SPORTS_GLASSES',
+	FASHION_GLASSES = 'FASHION_GLASSES',
 }
+
+
+export enum PropertySize {
+	SMALL = 'SMALL',
+	MEDIUM = 'MEDIUM',
+	LARGE = 'LARGE',
+	// EXTRA_LARGE = 'EXTRA_LARGE',
+}
+
+
+export enum PropertyColor {
+	BLACK = 'BLACK',
+	WHITE = 'WHITE',
+	BROWN = 'BROWN', //JIGARRANG
+	BLUE = 'BLUE',
+	RED = 'RED',
+	GREEN = 'GREEN',
+	YELLOW = 'YELLOW',
+	SILVER = 'SILVER',
+	GOLD = 'GOLD',
+}
+
+

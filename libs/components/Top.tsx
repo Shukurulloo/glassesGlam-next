@@ -21,7 +21,7 @@ import { REACT_APP_API_URL } from '../config';
 const Top = () => {
 	const device = useDeviceDetect();
 	const user = useReactiveVar(userVar);
-	const { t, i18n } = useTranslation('common');   // t harfi lug'atga kiritilgan so'zlarni chaqiradi
+	const { t, i18n } = useTranslation('common'); // t harfi lug'atga kiritilgan so'zlarni chaqiradi
 	const router = useRouter();
 	const [anchorEl2, setAnchorEl2] = useState<null | HTMLElement>(null);
 	const [lang, setLang] = useState<string | null>('en');
@@ -163,10 +163,23 @@ const Top = () => {
 		return (
 			<Stack className={'navbar'}>
 				<Stack className={`navbar-main ${colorChange ? 'transparent' : ''} ${bgColor ? 'transparent' : ''}`}>
+				<Stack
+							style={{
+								backgroundColor: '#7f8c8d',
+								width: '100%',
+								height: '30px',
+								display: 'flex',
+								alignItems: 'center',
+								justifyContent: 'center',
+							}}
+						>
+							<p style={{ margin: 0, color: '#fff' }}>10% off ORDERS over $30</p>
+						</Stack>
 					<Stack className={'container'}>
+					
 						<Box component={'div'} className={'logo-box'}>
-							<Link href={'/'}>
-								<img src="/img/logo/logoWhite.svg" alt="" />
+							<Link href={'/'} >
+								<img src="/img/logo/logo.JPG" alt="" style={{width:"100px"}}  />
 							</Link>
 						</Box>
 						<Box component={'div'} className={'router-box'}>
@@ -220,10 +233,10 @@ const Top = () => {
 								</>
 							) : (
 								<Link href={'/account/join'}>
-									<div className={'join-box'}>
+									<div className={'join-box'} >
 										<AccountCircleOutlinedIcon />
-										<span>
-											{t('Login')} / {t('Register')}
+										<span style={{color:"black"}}>
+											{t('Login')} / {t('Signup')}
 										</span>
 									</div>
 								</Link>

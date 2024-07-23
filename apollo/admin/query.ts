@@ -49,23 +49,19 @@ export const GET_ALL_PROPERTIES_BY_ADMIN = gql`
 				_id
 				propertyType
 				propertyStatus
-				propertyLocation
+				propertyGlass
+				propertySize
+				propertyColor
 				propertyAddress
 				propertyTitle
 				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
 				propertyViews
 				propertyLikes
 				propertyImages
 				propertyDesc
-				propertyBarter
-				propertyRent
 				memberId
 				soldAt
 				deletedAt
-				constructedAt
 				createdAt
 				updatedAt
 				memberData {

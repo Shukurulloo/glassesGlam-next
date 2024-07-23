@@ -51,19 +51,24 @@ body::-webkit-scrollbar {
 #pc-wrap {
 	#top {
 		.navbar {
+			width: 100%;
+
 			.navbar-main {
 				position: fixed;
-				padding: 22px 0px;
+				// padding: 22px 0px;
 				width: 100%;
 				height: 87px;
 				display: flex;
-				flex-direction: row;
+				// flex-direction: row;
 				box-sizing: border-box;
 				z-index: 99;
 				align-items: center;
-				border-top: 1px solid rgba(255, 255, 255, 0.07);
+				background-color: #fff;
+				border-bottom: 1px solid rgb(216, 216, 216);
+				color: #000000;
+				// border-top: 1px solid rgba(255, 255, 255, 0.07);
 				&.transparent {
-					background-color: #181a209e;
+					background-color: #fff;
 				}
 				.container {
 					flex-direction: row;
@@ -83,7 +88,7 @@ body::-webkit-scrollbar {
 						justify-content: space-between;
 						div {
 							position: relative;
-							color: #eeeeeeed;
+							color: black;
 							font-family: $font;
 							font-size: 15px;
 							font-style: normal;
@@ -96,7 +101,7 @@ body::-webkit-scrollbar {
 								top: 30px;
 								width: 434px;
 								height: 33px;
-								background: white;
+								background: #fff;
 								transition: all ease 2s;
 								&:before {
 									content: '';
@@ -111,6 +116,21 @@ body::-webkit-scrollbar {
 									z-index: 0;
 								}
 							}
+						}
+						div:hover::after {
+							content: '';
+							position: absolute;
+							left: 0;
+							bottom: -2px; /* O'zingizning dizayningizga moslashtiring */
+							width: 100%;
+							height: 2px; /* Chiziq qalinligi */
+							background-color: #0b0404; /* Chiziq rangi */
+							box-shadow: 0 2px 5px #7f8c8d; /* Shadow effekt */
+						}
+
+						/* Parent div elementining relative pozitsiyasini ta'minlash */
+						div {
+							position: relative; /* ::after pseudo-elementi uchun */
 						}
 					}
 					.user-box {
@@ -131,13 +151,28 @@ body::-webkit-scrollbar {
 								color: #ffffff;
 								margin-right: 10px;
 							}
+							// span {
+							// 	font-family: $font;
+							// 	font-size: 14px;
+							// 	font-style: normal;
+							// 	font-weight: 600;
+							// 	line-height: normal;
+							// 	color: #ffffff;
+							// }
+							span:hover::after {
+								content: '';
+								position: absolute;
+								left: 0;
+								bottom: -2px;
+								width: 100%;
+								height: 2px;
+								background-color: #0b0404;
+								box-shadow: 0 2px 5px #7f8c8d;
+							}
+
+							/* Parent span elementining relative pozitsiyasini ta'minlash */
 							span {
-								font-family: $font;
-								font-size: 14px;
-								font-style: normal;
-								font-weight: 600;
-								line-height: normal;
-								color: #ffffff;
+								position: relative; /* ::after pseudo-elementi uchun */
 							}
 						}
 						.login-user {
@@ -177,47 +212,158 @@ body::-webkit-scrollbar {
 	}
 
 	.header-main {
+		display: flex;
+		// align-items: center;
+		// justify-content: center;
 		position: relative;
 		width: 100%;
+		padding: 0 16% 0;
 		height: 860px;
-		background-image: url('/img/banner/header1.svg');
+		// background-image: url('/img/banner/header1.jpeg');
 		background-size: cover;
+		.header {
+			position: relative;
+			width: 100%;
+			padding-top: 16%;
+			height: 860px;
+			background-image: url('/img/banner/header01.JPG');
+			background-size: cover;
+
+			.main-title {
+				margin-left: 30px;
+				font-size: 48px;
+				color: white;
+				font-weight: bold;
+				margin-bottom: 10px;
+				font-family: 'Roboto', sans-serif;
+			}
+
+			.tagline,
+			.description {
+				font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana,
+					sans-serif;
+				margin-left: 30px;
+				color: white;
+				max-width: 530px;
+				// width: 200px;
+				text-transform: capitalize;
+				font-size: 20px;
+				margin-bottom: 10px;
+			}
+
+			.brand-name {
+				font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+				font-size: 24px;
+				font-weight: bold;
+				color: #007bff;
+			}
+			.button {
+				margin-left: 30px;
+				display: inline-block;
+				padding: 10px 20px;
+				font-size: 16px;
+				background-color: #181a20;
+				color: rgb(255, 255, 255); /* Matn rangi */
+				border: none;
+				border-radius: 5px; /* Tugma chetlarini yumshatish */
+				text-align: center;
+				text-decoration: none;
+				cursor: pointer;
+				transition: background-color 0.3s, opacity 0.3s; /* O'zgarish effektlari */
+			}
+
+			.button:hover {
+				background-color: #2514bc; /* Hover holatda fon rangini o'zgartirish */
+				opacity: 0.9; /* Hover holatda opacity o'zgartirish */
+			}
+		}
 		.container {
 			position: relative;
-			margin-top: 20px;
+			// margin-top: 20px;
 			flex-direction: column;
 			align-items: center;
+			background: #fff;
+
 			.search-box {
 				position: relative;
-				margin-top: 56px;
+				margin-top: -120px;
 				padding: 16px 29px;
-				width: 1094px;
-				height: 96px;
+				border-radius: 22px;
+				width: 1170px;
+				height: 106px;
 				display: flex;
 				flex-direction: row;
 				justify-content: space-between;
-				background: rgba(255, 255, 255, 0.28);
+				background: #ffffff;
 				border-radius: 12px;
+
+				.top {
+					align-items: center;
+					width: 200px;
+					height: auto;
+					display: flex;
+					// flex-direction: column;
+					// span {
+					// 	color: #181a20;
+					// 	font-family: $font;
+					// 	font-size: 15px;
+					// 	font-style: normal;
+					// 	font-weight: 600;
+					// 	line-height: normal;
+					// }
+					div.search-input-box {
+						width: 213px;
+						height: 26px;
+						// margin-top: 10px;
+						padding: 18px 14px;
+						display: flex;
+						align-items: center;
+						border-radius: 12px 12px 12px 12px;
+						border: 1px solid #ddd;
+						// img {
+						// 	width: 17px;
+						// 	height: 17px;
+						// 	filter: brightness(0%);
+						// }
+						input {
+							margin-left: 2px;
+							width: 100%;
+							height: 25px;
+							color: #717171;
+							font-family: $font;
+							font-size: 14px;
+							font-style: normal;
+							font-weight: 400;
+							line-height: 26px;
+							border: none;
+							outline: none;
+						}
+					}
+				}
+
 				.select-box {
-					width: 712px;
+					width: 752px;
+					align-items: center;
 					display: flex;
 					flex-direction: row;
 					justify-content: space-between;
 					.box {
-						padding: 24px 22px;
+						padding: 18px 14px;
+						margin-left: 10px;
 						width: 213px;
-						height: 56px;
+						height: 26px;
 						display: flex;
 						flex-direction: row;
 						align-items: center;
 						justify-content: space-between;
 						border-radius: 12px;
-						background: rgba(255, 255, 255, 0.575);
 						box-sizing: border-box;
+						border: 1px solid #ddd;
+
 						cursor: pointer;
 						&.on {
 							background: #ffffff;
-							border: 1px solid #000;
+							border: 1px solid #ddd;
 							color: #181a20;
 						}
 						span {
@@ -228,49 +374,51 @@ body::-webkit-scrollbar {
 							font-weight: 400;
 							line-height: 26px;
 						}
-						svg {
-						}
+						
 					}
 				}
 				.search-box-other {
 					display: flex;
 					flex-direction: row;
 					align-items: center;
-					.advanced-filter {
-						display: flex;
-						flex-direction: row;
-						align-items: center;
-						img {
-							margin-right: 10px;
-							width: 25px;
-							height: 22px;
-							cursor: pointer;
-						}
-						span {
-							color: #fff;
-							font-family: $font;
-							font-size: 20px;
-							font-style: normal;
-							font-weight: 600;
-							line-height: normal;
-							cursor: pointer;
-						}
-					}
+					// .advanced-filter {
+					// 	display: flex;
+					// 	flex-direction: row;
+					// 	align-items: center;
+					// 	img {
+					// 		margin-right: 10px;
+					// 		width: 25px;
+					// 		height: 22px;
+					// 		cursor: pointer;
+					// 	}
+					// 	span {
+					// 		color: #fff;
+					// 		font-family: $font;
+					// 		font-size: 20px;
+					// 		font-style: normal;
+					// 		font-weight: 600;
+					// 		line-height: normal;
+					// 		cursor: pointer;
+					// 	}
+					// }
 					.search-btn {
-						margin-left: 12px;
-						width: 62px;
-						height: 62px;
+						// margin-left: 12px;
+						width: 75px;
+						height: 34px;
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						border-radius: 55px;
-						background: #f17742;
+						border-radius: 12px ;
+						background: #43403f;
 						cursor: pointer;
 						svg {
 							width: 20px;
 							height: 20px;
 							color: #ffffff;
 						}
+					}
+					.search-btn:hover {
+					background: red;
 					}
 				}
 				.filter-location {
@@ -848,47 +996,7 @@ body::-webkit-scrollbar {
 		background: #f6f6f6;
 		cursor: pointer;
 	}
-	.top {
-		width: 580px;
-		height: auto;
-		display: flex;
-		flex-direction: column;
-		span {
-			color: #181a20;
-			font-family: $font;
-			font-size: 15px;
-			font-style: normal;
-			font-weight: 600;
-			line-height: normal;
-		}
-		div.search-input-box {
-			margin-top: 10px;
-			padding: 18px 14px;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			border-radius: 8px;
-			border: 1px solid #ddd;
-			img {
-				width: 17px;
-				height: 17px;
-				filter: brightness(0%);
-			}
-			input {
-				margin-left: 10px;
-				width: 100%;
-				height: 25px;
-				color: #717171;
-				font-family: $font;
-				font-size: 14px;
-				font-style: normal;
-				font-weight: 400;
-				line-height: 26px;
-				border: none;
-				outline: none;
-			}
-		}
-	}
+
 	hr {
 		width: 100%;
 	}

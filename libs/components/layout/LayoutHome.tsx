@@ -3,7 +3,7 @@ import useDeviceDetect from '../../hooks/useDeviceDetect';
 import Head from 'next/head';
 import Top from '../Top';
 import Footer from '../Footer';
-import { Stack } from '@mui/material';
+import { Button, Link, Stack } from '@mui/material';
 import FiberContainer from '../common/FiberContainer';
 import HeaderFilter from '../homepage/HeaderFilter';
 import { userVar } from '../../../apollo/store';
@@ -31,8 +31,8 @@ const withLayoutMain = (Component: any) => {
 			return (
 				<>
 					<Head>
-						<title>Nestar</title>
-						<meta name={'title'} content={`Nestar`} />
+						<title>GlassesGlam</title>
+						<meta name={'title'} content={`GlassesGlam`} />
 					</Head>
 					<Stack id="mobile-wrap">
 						<Stack id={'top'}>
@@ -53,8 +53,8 @@ const withLayoutMain = (Component: any) => {
 			return (
 				<>
 					<Head>
-						<title>Nestar</title>
-						<meta name={'title'} content={`Nestar`} />
+						<title>GlassesGlam</title>
+						<meta name={'title'} content={`GlassesGlam`} />
 					</Head>
 					<Stack id="pc-wrap">
 						<Stack id={'top'}>
@@ -62,7 +62,18 @@ const withLayoutMain = (Component: any) => {
 						</Stack>
 
 						<Stack className={'header-main'}>
-							<FiberContainer />
+							{/* <FiberContainer /> */}
+							<Stack className={'header'}>
+								<div className="main-title">See the World Through Style</div>
+								<div className="tagline">
+									Welcome to <span className="brand-name">GlassesGlam</span> - the perfect place to find your new
+									favorite glasses every day.
+								</div>
+								<div className="description">Discover your style with our wide range of affordable glasses.</div>
+								<Link href={'/property'}>
+									<button className="button">SHOP NOW</button>
+								</Link>
+							</Stack>
 							<Stack className={'container'}>
 								<HeaderFilter />
 							</Stack>

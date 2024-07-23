@@ -61,7 +61,7 @@ export const GET_MEMBER = gql(`
         memberLikes
         memberViews
         memberFollowings
-				memberFollowers
+		memberFollowers
         memberRank
         memberWarnings
         memberBlocks
@@ -88,23 +88,19 @@ export const GET_PROPERTY = gql`
 			_id
 			propertyType
 			propertyStatus
-			propertyLocation
+			propertyGlass
+			propertySize
+			propertyColor
 			propertyAddress
 			propertyTitle
 			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
 			propertyViews
 			propertyLikes
 			propertyImages
 			propertyDesc
-			propertyBarter
-			propertyRent
 			memberId
 			soldAt
 			deletedAt
-			constructedAt
 			createdAt
 			updatedAt
 			memberData {
@@ -144,24 +140,20 @@ export const GET_PROPERTIES = gql`
 				_id
 				propertyType
 				propertyStatus
-				propertyLocation
+				propertyGlass
+				propertySize
+				propertyColor
 				propertyAddress
 				propertyTitle
 				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
 				propertyViews
 				propertyLikes
 				propertyRank
 				propertyImages
 				propertyDesc
-				propertyBarter
-				propertyRent
 				memberId
 				soldAt
 				deletedAt
-				constructedAt
 				createdAt
 				updatedAt
 				memberData {
@@ -206,23 +198,19 @@ export const GET_AGENT_PROPERTIES = gql`
 				_id
 				propertyType
 				propertyStatus
-				propertyLocation
+				propertyGlass
+				propertySize
+				propertyColor
 				propertyAddress
 				propertyTitle
 				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
 				propertyViews
 				propertyLikes
 				propertyImages
 				propertyDesc
-				propertyBarter
-				propertyRent
 				memberId
 				soldAt
 				deletedAt
-				constructedAt
 				createdAt
 				updatedAt
 			}
@@ -240,25 +228,21 @@ export const GET_FAVORITES = gql`
 				_id
 				propertyType
 				propertyStatus
-				propertyLocation
+				propertyGlass
+				propertySize
+				propertyColor
 				propertyAddress
 				propertyTitle
 				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
 				propertyViews
 				propertyLikes
 				propertyComments
 				propertyRank
 				propertyImages
 				propertyDesc
-				propertyBarter
-				propertyRent
 				memberId
 				soldAt
 				deletedAt
-				constructedAt
 				createdAt
 				updatedAt
 				memberData {
@@ -303,25 +287,21 @@ export const GET_VISITED = gql`
 				_id
 				propertyType
 				propertyStatus
-				propertyLocation
+				propertyGlass
+				propertySize
+				propertyColor
 				propertyAddress
 				propertyTitle
 				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
 				propertyViews
 				propertyLikes
 				propertyComments
 				propertyRank
 				propertyImages
 				propertyDesc
-				propertyBarter
-				propertyRent
 				memberId
 				soldAt
 				deletedAt
-				constructedAt
 				createdAt
 				updatedAt
 				memberData {

@@ -128,23 +128,19 @@ export const CREATE_PROPERTY = gql`
 			_id
 			propertyType
 			propertyStatus
-			propertyLocation
+			propertyGlass
+			propertySize
+			propertyColor
 			propertyAddress
 			propertyTitle
 			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
 			propertyViews
 			propertyLikes
 			propertyImages
 			propertyDesc
-			propertyBarter
-			propertyRent
 			memberId
 			soldAt
 			deletedAt
-			constructedAt
 			createdAt
 			updatedAt
 		}
@@ -157,23 +153,19 @@ export const UPDATE_PROPERTY = gql`
 			_id
 			propertyType
 			propertyStatus
-			propertyLocation
+			propertyGlass
+			propertySize
+			propertyColor
 			propertyAddress
 			propertyTitle
 			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
 			propertyViews
 			propertyLikes
 			propertyImages
 			propertyDesc
-			propertyBarter
-			propertyRent
 			memberId
 			soldAt
 			deletedAt
-			constructedAt
 			createdAt
 			updatedAt
 		}
@@ -186,23 +178,19 @@ export const LIKE_TARGET_PROPERTY = gql`
 			_id
 			propertyType
 			propertyStatus
-			propertyLocation
+			propertyGlass
+			propertySize
+			propertyColor
 			propertyAddress
 			propertyTitle
 			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
 			propertyViews
 			propertyLikes
 			propertyImages
 			propertyDesc
-			propertyBarter
-			propertyRent
 			memberId
 			soldAt
 			deletedAt
-			constructedAt
 			createdAt
 			updatedAt
 		}
