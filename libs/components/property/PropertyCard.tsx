@@ -64,25 +64,25 @@ const PropertyCard = (props: PropertyCardType) => {
 							</Link>
 						</Stack>
 						<Stack className="address">
-							<Typography>
-								{property.propertyAddress}, {property.propertyLocation}
-							</Typography>
+							<Typography>{property.propertyAddress}</Typography>
 						</Stack>
 					</Stack>
 					<Stack className="options">
 						<Stack className="option">
-							<img src="/img/icons/bed.svg" alt="" /> <Typography>{property.propertyBeds} bed</Typography>
+							<p style={{ color: 'black', fontSize: '12px' }}>for:</p>
+							<Typography> {property.propertyType}</Typography>
 						</Stack>
 						<Stack className="option">
-							<img src="/img/icons/room.svg" alt="" /> <Typography>{property.propertyRooms} room</Typography>
+							<p style={{ color: 'black', fontSize: '12px', marginLeft:"9px"}}>color:</p>
+							<Typography>{property.propertyColor}</Typography>
 						</Stack>
 						<Stack className="option">
-							<img src="/img/icons/expand.svg" alt="" /> <Typography>{property.propertySquare} m2</Typography>
+							<p style={{ color: 'black', fontSize: '12px', marginLeft:"9px" }}>size:</p> <Typography>{property.propertySize} </Typography>
 						</Stack>
 					</Stack>
 					<Stack className="divider"></Stack>
 					<Stack className="type-buttons">
-						<Stack className="type">
+						{/* <Stack className="type">
 							<Typography
 								sx={{ fontWeight: 500, fontSize: '13px' }}
 								className={property.propertyRent ? '' : 'disabled-type'}
@@ -95,13 +95,17 @@ const PropertyCard = (props: PropertyCardType) => {
 							>
 								Barter
 							</Typography>
-						</Stack>
+						</Stack> */}
 						{!recentlyVisited && (
 							<Stack className="buttons">
+								<div className='wrap'>
 								<IconButton color={'default'}>
 									<RemoveRedEyeIcon />
 								</IconButton>
 								<Typography className="view-cnt">{property?.propertyViews}</Typography>
+								</div>
+			
+								<div className='wrap'>
 								<IconButton color={'default'} onClick={() => likePropertyHandler(user, property?._id)}>
 									{myFavorites ? (
 										<FavoriteIcon color="primary" />
@@ -112,6 +116,7 @@ const PropertyCard = (props: PropertyCardType) => {
 									)}
 								</IconButton>
 								<Typography className="view-cnt">{property?.propertyLikes}</Typography>
+									</div>
 							</Stack>
 						)}
 					</Stack>

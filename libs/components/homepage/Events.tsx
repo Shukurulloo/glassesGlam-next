@@ -4,36 +4,38 @@ import useDeviceDetect from '../../hooks/useDeviceDetect';
 
 interface EventData {
 	eventTitle: string;
-	city: string;
+	date: string;
 	description: string;
 	imageSrc: string;
 }
 const eventsData: EventData[] = [
 	{
-		eventTitle: 'Paradise City Theme Park',
-		city: 'Incheon',
+		eventTitle: 'Summer Spectacular Sale 🕶️',
+		date: 'August 15 - August 30',
 		description:
-			'Experience magic and wonder in Incheon with a visit to the night-themed indoor theme park Wonderbox at Paradise City!',
-		imageSrc: '/img/events/INCHEON.webp',
+			'Get ready for our Summer Spectacular Sale! Enjoy up to 50% off on selected eyeglasses and sunglasses. Plus, get a free lens upgrade on all orders over $100. Don’t miss out on this chance to refresh your eyewear collection!',
+		imageSrc: '/img/events/Summer.jpeg',
 	},
 	{
-		eventTitle: 'Taebaeksan Snow Festival',
-		city: 'Seoul',
-		description: 'If you have the opportunity to travel to South Korea, do not miss the Taebaeksan Snow Festival!',
-		imageSrc: '/img/events/SEOUL.webp',
-	},
-	{
-		eventTitle: 'Suseong Lake Event',
-		city: 'Daegu',
-		description: 'The Suseong Lake Festival is a culture and arts festival held alongside Suseongmot Lake!',
-		imageSrc: '/img/events/DAEGU.webp',
-	},
-	{
-		eventTitle: 'Sand Festival',
-		city: 'Busan',
+		eventTitle: 'Virtual Try-On Week 📱',
+		date: 'September 5 - September 12',
 		description:
-			'Haeundae Sand Festival, the nation’s largest eco-friendly exhibition on sand, is held at Haeundae Beach!',
-		imageSrc: '/img/events/BUSAN.webp',
+			'Experience our Virtual Try-On feature like never before. Test out new styles from the comfort of your home and enjoy a 10% discount on your first order. Join us online and find your perfect pair of glasses!',
+		imageSrc: '/img/events/virtual.jpg',
+	},
+	{
+		eventTitle: 'Back-to-School Special🎓',
+		date: 'September 15 - September 30',
+		description:
+			'Students and parents, get ready for the school year with our Back-to-School Special! Receive a 20% discount on all children’s and student eyewear. Plus, free shipping on all orders placed during the event.',
+		imageSrc: '/img/events/school.JPG',
+	},
+	{
+		eventTitle: 'Annual Clearance Sale 🏷️',
+		date: 'December 1 - December 20',
+		description:
+			'Our biggest sale of the year is here! Save up to 70% on last season’s styles and clearance items. Stock up on your favorite glasses and sunglasses before the year ends!',
+		imageSrc: '/img/events/sale.jpg',
 	},
 ];
 
@@ -54,7 +56,7 @@ const EventCard = ({ event }: { event: EventData }) => {
 				}}
 			>
 				<Box component={'div'} className={'info'}>
-					<strong>{event?.city}</strong>
+					<strong>{event?.date}</strong>
 					<span>{event?.eventTitle}</span>
 				</Box>
 				<Box component={'div'} className={'more'}>
@@ -85,6 +87,8 @@ const Events = () => {
 							return <EventCard event={event} key={event?.eventTitle} />;
 						})}
 					</Stack>
+					<span>Follow Us on social media and subscribe to our newsletter for the latest updates and exclusive invites to upcoming events.</span>
+
 				</Stack>
 			</Stack>
 		);

@@ -67,7 +67,7 @@ const TopProperties = (props: TopPropertiesProps) => {
 			<Stack className={'top-properties'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
-						<span>Top properties</span>
+						<span>Top Glasses</span>
 					</Stack>
 					<Stack className={'card-box'}>
 						<Swiper
@@ -95,15 +95,8 @@ const TopProperties = (props: TopPropertiesProps) => {
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
-							<span>Top properties</span>
-							<p>Check out our Top Properties</p>
-						</Box>
-						<Box component={'div'} className={'right'}>
-							<div className={'pagination-box'}>
-								<WestIcon className={'swiper-top-prev'} />
-								<div className={'swiper-top-pagination'}></div>
-								<EastIcon className={'swiper-top-next'} />
-							</div>
+							<span style={{color:"#dc9157"}}>Top Glasses</span>
+							<p>Check out our Top Glasses</p>
 						</Box>
 					</Stack>
 					<Stack className={'card-box'}>
@@ -129,6 +122,14 @@ const TopProperties = (props: TopPropertiesProps) => {
 							})}
 						</Swiper>
 					</Stack>
+					<Box component={'div'} className={'right'}>
+						<div className={'pagination-box'}>
+							<WestIcon className={'swiper-top-prev'} />
+							<div className={'swiper-top-pagination'}></div>
+							<EastIcon className={'swiper-top-next'} />
+						</div>
+					</Box>
+
 				</Stack>
 			</Stack>
 		);

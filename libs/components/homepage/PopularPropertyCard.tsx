@@ -53,21 +53,21 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 					<p className={'desc'}>{property.propertyAddress}</p>
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
-							<span>{property?.propertyBeds} bed</span>
+							{/* <img src="/img/icons/bed.svg" alt="" /> */}
+							<span>{property?.propertyPrice}</span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
-							<span>{property?.propertyRooms} rooms</span>
+							{/* <img src="/img/icons/room.svg" alt="" /> */}
+							<span>{property?.propertyColor}</span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property?.propertySquare} m2</span>
+							{/* <img src="/img/icons/expand.svg" alt="" /> */}
+							<span>{property?.propertyGlass}</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
-						<p>{property?.propertyRent ? 'rent' : 'sale'}</p>
+						{/* <p>{property?.propertyRent ? 'rent' : 'sale'}</p> */}
 						<div className="view-like-box">
 							<IconButton color={'default'}>
 								<RemoveRedEyeIcon />
@@ -81,52 +81,50 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 	} else {
 		return (
 			<Stack className="popular-card-box">
+				
 				<Box
 					component={'div'}
 					className={'card-img'}
 					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${property?.propertyImages[0]})` }}
 					onClick={() => pushDetailHandler(property._id)}
 				>
+					<strong className={'title'} >
+						{property.propertyTitle}
+					</strong>
 					{property && property?.propertyRank >= topPropertyRank ? (
 						<div className={'status'}>
+							<div></div>
 							<img src="/img/icons/electricity.svg" alt="" />
 							<span>top</span>
+							
 						</div>
 					) : (
 						''
 					)}
 
-					<div className={'price'}>${property.propertyPrice}</div>
 				</Box>
-				<Box component={'div'} className={'info'}>
-					<strong className={'title'} onClick={() => pushDetailHandler(property._id)}>
-						{property.propertyTitle}
-					</strong>
-					<p className={'desc'}>{property.propertyAddress}</p>
+				<Box component={'div'} className={'info'} onClick={() => pushDetailHandler(property._id)}>
+					
+					
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
-							<span>{property?.propertyBeds} bed</span>
+							<p className={'desc'}>{property.propertyPrice}.00$</p>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
-							<span>{property?.propertyRooms} rooms</span>
+							{/* <img src="/img/icons/expand.svg" alt="" /> */}
+							<span className={'descglass'}>{property?.propertyGlass}</span>
 						</div>
-						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property?.propertySquare} m2</span>
-						</div>
-					</div>
-					<Divider sx={{ mt: '15px', mb: '17px' }} />
-					<div className={'bott'}>
-						<p>{property?.propertyRent ? 'rent' : 'sale'}</p>
 						<div className="view-like-box">
-							<IconButton color={'default'}>
+							<IconButton color={'black'}>
 								<RemoveRedEyeIcon />
 							</IconButton>
 							<Typography className="view-cnt">{property?.propertyViews}</Typography>
 						</div>
 					</div>
+					{/* <Divider sx={{ mt: '15px', mb: '17px' }} />
+					<div className={'bott'}>
+						
+					</div> */}
 				</Box>
 			</Stack>
 		);

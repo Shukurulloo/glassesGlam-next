@@ -105,18 +105,19 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 			<Stack className={'trend-properties'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
+					<div className={'borderdiv'} style={{ }}></div>
 						<Box component={'div'} className={'left'}>
-							<span>GLASSES</span>
+							<span>Trend Glasses</span>
 							<p>Trend is based on likes</p>
 						</Box>
 						{/*  =============*/}
-						<Box component={'div'} className={'right'}>
+						{/* <Box component={'div'} className={'right'}>
 							<div className={'pagination-box'}>
 								<WestIcon className={'swiper-trend-prev'} />
 								<div className={'swiper-trend-pagination'}></div>
 								<EastIcon className={'swiper-trend-next'} />
 							</div>
-						</Box>
+						</Box> */}
 						{/* ------------ */}
 					</Stack>
 					<Stack className={'card-box'}>
@@ -148,6 +149,13 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 							</Swiper>
 						)}
 					</Stack>
+					<Box component={'div'} className={'right'}>
+							<div className={'pagination-box'}>
+								<WestIcon className={'swiper-trend-prev'} />
+								<div className={'swiper-trend-pagination'}></div>
+								<EastIcon className={'swiper-trend-next'} />
+							</div>
+						</Box>
 				</Stack>
 			</Stack>
 		);

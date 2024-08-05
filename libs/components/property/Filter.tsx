@@ -414,8 +414,8 @@ const Filter = (props: FilterType) => {
 					</p>
 					<Stack
 						className={`property-location`}
-						style={{ height: showMore ? '253px' : '115px' }}
-						onMouseEnter={() => setShowMore(true)}
+						// style={{ height: showMore ? '253px' : '115px' }}
+						// onMouseEnter={() => setShowMore(true)}
 						onMouseLeave={() => {
 							if (!searchFilter?.search?.typeList) {
 								setShowMore(false);

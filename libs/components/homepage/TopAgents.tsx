@@ -11,6 +11,7 @@ import { AgentsInquiry } from '../../types/member/member.input';
 import { useQuery } from '@apollo/client';
 import { GET_AGENTS } from '../../../apollo/user/query';
 import { T } from '../../types/common';
+import Link from 'next/link';
 
 interface TopAgentsProps {
 	initialInput: AgentsInquiry;
@@ -69,6 +70,8 @@ const TopAgents = (props: TopAgentsProps) => {
 	} else {
 		return (
 			<Stack className={'top-agents'}>
+				<div className={'border'}></div>
+
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
@@ -76,10 +79,13 @@ const TopAgents = (props: TopAgentsProps) => {
 							<p>Our Top Agents always ready to serve you</p>
 						</Box>
 						<Box component={'div'} className={'right'}>
-							<div className={'more-box'}>
-								<span>See All Agents</span>
-								<img src="/img/icons/rightup.svg" alt="" />
-							</div>
+							<Link href={'/agent'}>
+								{' '}
+								<div className={'more-box'}>
+									<span>See All Agents</span>
+									{/* <img src="/img/icons/rightup.svg" alt="" /> */}
+								</div>
+							</Link>
 						</Box>
 					</Stack>
 					<Stack className={'wrapper'}>

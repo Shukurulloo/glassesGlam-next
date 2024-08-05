@@ -46,7 +46,7 @@ const PopularProperties = (props: PopularPropertiesProps) => {
 			<Stack className={'popular-properties'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
-						<span>Popular properties</span>
+						<span>Popular Glasses</span>
 					</Stack>
 					<Stack className={'card-box'}>
 						<Swiper
@@ -72,17 +72,20 @@ const PopularProperties = (props: PopularPropertiesProps) => {
 		return (
 			<Stack className={'popular-properties'}>
 				<Stack className={'container'}>
+				<div className={'border'}></div>
+
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
-							<span>Popular properties</span>
+							
+							<span>Popular Glasses</span>
 							<p>Popularity is based on views</p>
 						</Box>
 						<Box component={'div'} className={'right'}>
 							<div className={'more-box'}>
 								<Link href={'/property'}>
-									<span>See All Categories</span>
+									<span >See All Categories</span>
 								</Link>
-								<img src="/img/icons/rightup.svg" alt="" />
+								{/* <img src="/img/icons/rightup.svg" alt="" /> */}
 							</div>
 						</Box>
 					</Stack>

@@ -39,22 +39,24 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 
 	/** APOLLO REQUESTS **/
 	const [likeTargetProperty] = useMutation(LIKE_TARGET_PROPERTY);
-	
-	const { // useQuery fazalarni olib beradi 
+
+	const {
+		// useQuery fazalarni olib beradi
 		loading: getPropertiesLoading, // loading bo'lish jarayoni
-		data: getPropertiesData,  // data asosiy // bu kesh shuyerga saqlaymz
+		data: getPropertiesData, // data asosiy // bu kesh shuyerga saqlaymz
 		error: getPropertiesError, // data kirib kelgunga qadar error hosil bo'lsa
 		refetch: getPropertiesRefetch, // backentdan qayta malumot olish uchun  refetch mantigi, eng oxirgi
-	} = useQuery(GET_PROPERTIES, {  // 1-arg comanda(query) 2- option(variant)
+	} = useQuery(GET_PROPERTIES, {
+		// 1-arg comanda(query) 2- option(variant)
 		fetchPolicy: 'network-only', // eng muhumi...  cache + => network
 		variables: { input: searchFilter }, // chaqirishmz kerak bo'lgan mantiqlar initialInputdan olamz
 		notifyOnNetworkStatusChange: true, // bydefolt false // qayta data o'zgarganda serverdan kelgan datani yangilash un
-		onCompleted: (data: T) => { // backentdan datani qabul qilganda amalga oshadigon mantiq
+		onCompleted: (data: T) => {
+			// backentdan datani qabul qilganda amalga oshadigon mantiq
 			setProperties(data?.getProperties?.list); // spesifik datani chaqirish yani faqat listni keshtan ajratib oldik
-			setTotal(data?.getProperties?.metaCounter[0]?.total)
+			setTotal(data?.getProperties?.metaCounter[0]?.total);
 		},
 	});
-
 
 	/** LIFECYCLES **/
 	useEffect(() => {
@@ -85,20 +87,21 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 		setCurrentPage(value);
 	};
 
-	const likePropertyHandler = async (user: T, id: string) => { // auth bo'lgan user va like bosiladigon property id
+	const likePropertyHandler = async (user: T, id: string) => {
+		// auth bo'lgan user va like bosiladigon property id
 		try {
 			if (!id) return; // tanlangan id mavjudligini tekshramz
 			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED); // auth
 
 			// executed likeTargetProperty Mutation
-			await likeTargetProperty({ 
+			await likeTargetProperty({
 				variables: { input: id }, // aynan qaysi propertyga like bosilganini id si
 			});
 
 			// executed getPropertiesRefetch: backentdan oxirgi datani olamz, likelar sonini o'zgartramz
 			await getPropertiesRefetch({ input: initialInput }); // inputni initialInput qiymatida olamz
 
-			await sweetTopSmallSuccessAlert('success', 800);  //elart chiqish vaqti
+			await sweetTopSmallSuccessAlert('success', 800); //elart chiqish vaqti
 		} catch (err: any) {
 			console.log('ERROR, likePropertyHandler:', err.message);
 			sweetMixinErrorAlert(err.message).then();
@@ -183,11 +186,13 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 								{properties?.length === 0 ? (
 									<div className={'no-data'}>
 										<img src="/img/icons/icoAlert.svg" alt="" />
-										<p>No Properties found!</p>
+										<p>No Products found!</p>
 									</div>
 								) : (
 									properties.map((property: Property) => {
-										return <PropertyCard property={property} likePropertyHandler={likePropertyHandler} key={property?._id} />;
+										return (
+											<PropertyCard property={property} likePropertyHandler={likePropertyHandler} key={property?._id} />
+										);
 									})
 								)}
 							</Stack>
@@ -228,10 +233,6 @@ PropertyList.defaultProps = {
 		sort: 'createdAt',
 		direction: 'DESC',
 		search: {
-			squaresRange: {
-				start: 0,
-				end: 500,
-			},
 			pricesRange: {
 				start: 0,
 				end: 2000000,

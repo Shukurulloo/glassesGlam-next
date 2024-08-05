@@ -59,7 +59,6 @@ const TrendPropertyCard = (props: TrendPropertyCardProps) => {
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
-						
 						<div className="view-like-box">
 							<IconButton color={'default'}>
 								<RemoveRedEyeIcon />
@@ -91,24 +90,24 @@ const TrendPropertyCard = (props: TrendPropertyCardProps) => {
 					<strong className={'title'} onClick={() => pushDetailHandler(property._id)}>
 						{property.propertyTitle}
 					</strong>
-					<p className={'desc'}>{property.propertyDesc ?? 'no description'}</p>
+					{/* <p className={'desc'}>{property.propertyDesc ?? ''}</p> */}
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/car.png" alt="" />
-							<span>{property.propertyType} </span>
+							{/* <img src="/img/icons/car.png" alt="" /> */}
+							<span className="gender">{property.propertyType} </span>
 						</div>
+						{/* <div>
+							<img src="/img/icons/silverColor.jpg" alt="" />
+							<span>{property.propertyColor}</span>
+						</div> */}
 						<div>
-							<img src="/img/icons/colorcar.png" alt="" />
-							<span>{property.propertyColor} Color</span>
-						</div>
-						<div>
-							<img src="/img/icons/colcar.png" alt="" />
-							<span>{property.propertySize} </span>
+							{/* <img src="/img/icons/colcar.png" alt="" /> */}
+							<span className="size">size: {property.propertySize} </span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
-						<div>${property.propertyPrice}</div>
+						<div className={'pricediv'}>${property.propertyPrice}.00</div>
 						<div className="view-like-box">
 							<IconButton color={'default'}>
 								<RemoveRedEyeIcon />

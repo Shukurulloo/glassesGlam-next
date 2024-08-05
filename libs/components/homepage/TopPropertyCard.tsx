@@ -45,8 +45,7 @@ const TopPropertyCard = (props: TopPropertyCardProps) => {
 					</strong>
 					<p className={'desc'}>{property?.propertyAddress}</p>
 					<div className={'options'}>
-						<div>
-							<img src="/img/icons/bed.svg" alt="" />
+						{/* <div>
 							<span>{property?.propertyBeds} bed</span>
 						</div>
 						<div>
@@ -56,15 +55,15 @@ const TopPropertyCard = (props: TopPropertyCardProps) => {
 						<div>
 							<img src="/img/icons/expand.svg" alt="" />
 							<span>{property?.propertySquare} m2</span>
-						</div>
+						</div> */}
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
-						<p>
+						{/* <p>
 							{' '}
 							{property.propertyRent ? 'Rent' : ''} {property.propertyRent && property.propertyBarter && '/'}{' '}
 							{property.propertyBarter ? 'Barter' : ''}
-						</p>
+						</p> */}
 						<div className="view-like-box">
 							<IconButton color={'default'}>
 								<RemoveRedEyeIcon />
@@ -91,48 +90,55 @@ const TopPropertyCard = (props: TopPropertyCardProps) => {
 					className={'card-img'}
 					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${property?.propertyImages[0]})` }}
 					onClick={() => pushDetailHandler(property._id)}
-				>
-					<div>${property?.propertyPrice}</div>
-				</Box>
+				></Box>
 				<Box component={'div'} className={'info'}>
-					<strong className={'title'} onClick={() => pushDetailHandler(property._id)}>
-						{property?.propertyTitle}
-					</strong>
-					<p className={'desc'}>{property?.propertyAddress}</p>
+					<div className={'title-wrap'}>
+						<strong className={'title'} onClick={() => pushDetailHandler(property._id)}>
+							{property?.propertyTitle}
+						</strong>
+						<div className={'desc'}>${property?.propertyPrice}</div>
+					</div>
+
+					{/* <p className={'desc'}>{property?.propertyAddress}</p> */}
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
-							<span>{property?.propertyBeds} bed</span>
+							{/* <img src="/img/icons/bed.svg" alt="" /> */}
+							<span>{property?.propertyType} </span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
-							<span>{property?.propertyRooms} rooms</span>
+							{/* <img src="/img/icons/room.svg" alt="" /> */}
+							<span>{property?.propertyGlass}</span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property?.propertySquare} m2</span>
+							{/* <img src="/img/icons/expand.svg" alt="" /> */}
+							<span>{property?.propertyColor}</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
-						<p>
+						{/* <p>
 							{' '}
 							{property.propertyRent ? 'Rent' : ''} {property.propertyRent && property.propertyBarter && '/'}{' '}
 							{property.propertyBarter ? 'Barter' : ''}
-						</p>
+						</p> */}
 						<div className="view-like-box">
-							<IconButton color={'default'}>
-								<RemoveRedEyeIcon />
-							</IconButton>
-							<Typography className="view-cnt">{property?.propertyViews}</Typography>
-							<IconButton color={'default'} onClick={() => likePropertyHandler(user, property?._id)}>
-								{property?.meLiked && property?.meLiked[0]?.myFavorite ? (
-									<FavoriteIcon style={{ color: 'red' }} />
-								) : (
-									<FavoriteIcon />
-								)}
-							</IconButton>
-							<Typography className="view-cnt">{property?.propertyLikes}</Typography>
+							<div className={'wrap-rank'}>
+								<IconButton color={'default'}>
+									<RemoveRedEyeIcon />
+								</IconButton>
+								<Typography className="view-cnt">{property?.propertyViews}</Typography>
+							</div>
+
+							<div className={'wrap-rank'}>
+								<IconButton color={'default'} onClick={() => likePropertyHandler(user, property?._id)}>
+									{property?.meLiked && property?.meLiked[0]?.myFavorite ? (
+										<FavoriteIcon style={{ color: 'red' }} />
+									) : (
+										<FavoriteIcon />
+									)}
+								</IconButton>
+								<Typography className="view-cnt">{property?.propertyLikes}</Typography>
+							</div>
 						</div>
 					</div>
 				</Box>
