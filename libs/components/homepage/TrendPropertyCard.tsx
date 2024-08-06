@@ -90,18 +90,15 @@ const TrendPropertyCard = (props: TrendPropertyCardProps) => {
 					<strong className={'title'} onClick={() => pushDetailHandler(property._id)}>
 						{property.propertyTitle}
 					</strong>
-					{/* <p className={'desc'}>{property.propertyDesc ?? ''}</p> */}
+		
 					<div className={'options'}>
 						<div>
-							{/* <img src="/img/icons/car.png" alt="" /> */}
+				
 							<span className="gender">{property.propertyType} </span>
 						</div>
-						{/* <div>
-							<img src="/img/icons/silverColor.jpg" alt="" />
-							<span>{property.propertyColor}</span>
-						</div> */}
+					
 						<div>
-							{/* <img src="/img/icons/colcar.png" alt="" /> */}
+							
 							<span className="size">size: {property.propertySize} </span>
 						</div>
 					</div>

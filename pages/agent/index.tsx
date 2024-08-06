@@ -136,22 +136,7 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 			<Stack className={'agent-list-page'}>
 				<Stack className={'container'}>
 					<Stack className={'filter'}>
-						<Box component={'div'} className={'left'}>
-							<input
-								type="text"
-								placeholder={'Search for an agent'}
-								value={searchText}
-								onChange={(e: any) => setSearchText(e.target.value)}
-								onKeyDown={(event: any) => {
-									if (event.key == 'Enter') {
-										setSearchFilter({
-											...searchFilter,
-											search: { ...searchFilter.search, text: searchText },
-										});
-									}
-								}}
-							/>
-						</Box>
+	
 						<Box component={'div'} className={'right'}>
 							<span>Sort by</span>
 							<div>
@@ -173,6 +158,22 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 									</MenuItem>
 								</Menu>
 							</div>
+						</Box>
+						<Box component={'div'} className={'left'}>
+							<input
+								type="text"
+								placeholder={'Search for an agent'}
+								value={searchText}
+								onChange={(e: any) => setSearchText(e.target.value)}
+								onKeyDown={(event: any) => {
+									if (event.key == 'Enter') {
+										setSearchFilter({
+											...searchFilter,
+											search: { ...searchFilter.search, text: searchText },
+										});
+									}
+								}}
+							/>
 						</Box>
 					</Stack>
 					<Stack className={'card-wrap'}>

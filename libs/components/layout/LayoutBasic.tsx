@@ -34,14 +34,14 @@ const withLayoutBasic = (Component: any) => {
 					bgImage = '/img/banner/back-rebbit.jpeg';
 					break;
 				case '/agent':
-					title = 'Agents';
-					desc = 'Home / For Rent';
-					bgImage = '/img/banner/agents.webp';
+					title = 'Meet Our Agents';
+					desc = 'Connect with Our Expert Agents';
+					bgImage = '/img/banner/agent-back.jpg';
 					break;
 				case '/agent/detail':
 					title = 'Agent Page';
-					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header2.svg';
+					desc = 'Explore Our Expert  Agent / Available for Assistance';
+					bgImage = '/img/banner/background-agent.jpg';
 					break;
 				case '/mypage':
 					title = 'my page';

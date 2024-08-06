@@ -148,6 +148,8 @@
 				box-sizing: border-box;
 			}
 			.buttons-box {
+	// border: 1px solid red;
+				
 				width: auto;
 				height: auto;
 				display: flex;
@@ -161,10 +163,17 @@
 	position: relative;
 	margin-right: 27px;
 	margin-bottom: 34px;
+	border-radius: 12px;
 	display: flex;
 	flex-direction: column;
+	box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
+	&:hover {
+		box-shadow: 4px 4px 14px 4px rgba(5, 59, 219, 0.368);
+	}
+	
 	.agent-img {
-		border-radius: 12px;
+		
+		border-radius: 12px 12px 0px 0px;
 		width: 233px;
 		height: 273px;
 		background-size: 100% 100%;
@@ -172,20 +181,21 @@
 		cursor: pointer;
 		div {
 			position: absolute;
-			padding: 12px;
+			padding: 7px;
 			top: 12px;
 			left: 12px;
-			border-radius: 6px;
-			background: #eb6753;
+			border-radius: 30px;
+			background: #f46b02d3;
 			color: #fff;
 			font-family: $font;
-			font-size: 12px;
+			font-size: 11px;
 			font-style: normal;
 			font-weight: 600;
 			line-height: normal;
 		}
 	}
 	.agent-desc {
+			padding: 6px;
 		margin-top: 23px;
 		display: flex;
 		flex-direction: row;
@@ -196,17 +206,18 @@
 			flex-direction: column;
 			strong {
 				color: #181a20;
-				font-family: $font;
-				font-size: 15px;
+				font-family:Verdana, Geneva, Tahoma, sans-serif;
+				font-size: 17px;
 				font-style: normal;
 				font-weight: 600;
 				line-height: normal;
 				cursor: pointer;
 			}
 			span {
-				color: #181a20;
-				font-family: $font;
-				font-size: 15px;
+				margin-left: 3px;
+				color: hsla(0, 91%, 51%, 0.618);
+				font-family:Impact;
+				font-size: 14px;
 				font-style: normal;
 				font-weight: 400;
 				line-height: 28px;
