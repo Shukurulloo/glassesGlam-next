@@ -1,7 +1,7 @@
 #pc-wrap {
 	#property-detail-page {
 		position: relative;
-		background: #fff;
+		background: gainsboro;
 		padding-top: 87px;
 		padding-bottom: 200px;
 		.property-detail-config {
@@ -11,19 +11,27 @@
 			gap: 30px;
 			.property-info-config {
 				width: 100%;
+				background: white;
+				border-radius: 10px;
+				padding: 30px;
+				display: flex;
+				flex-direction: row;
+				// border: 1px solid black;
 				height: auto;
 				gap: 30px;
 				.info {
-					width: 100%;
+					flex: 1;
 					height: auto;
-					flex-direction: row;
-					justify-content: space-between;
+					display: flex;
 					.left-box {
-						width: 50%;
+						display: flex;
+						justify-content: space-between;
+						flex-direction: row;
+						// flex: 3;
 						height: auto;
 						.title-main {
 							color: #181a20;
-							font-family: $font;
+							font-family: Georgia, 'Times New Roman', Times, serif;
 							font-size: 30px;
 							font-style: normal;
 							font-weight: 600;
@@ -32,12 +40,15 @@
 							text-transform: capitalize;
 						}
 						.top-box {
+							background-color: #eb6753;
 							width: auto;
 							height: auto;
+							padding: 3px;
 							flex-direction: row;
 							align-items: center;
 							gap: 10px;
 							margin-bottom: 17px;
+
 							.city {
 								color: #717171;
 								font-family: $font;
@@ -46,26 +57,23 @@
 								font-weight: 400;
 								line-height: normal;
 							}
-							.divider {
-								width: 1px;
-								height: 20px;
-								background: #ddd;
-							}
-							.buy-rent-box {
-								flex-direction: row;
-								align-items: center;
-								gap: 7px;
-								.buy-rent {
-									color: #eb6753;
-									font-family: $font;
-									font-size: 15px;
-									font-style: normal;
-									font-weight: 600;
-									line-height: normal;
-								}
-							}
+							
+							// .buy-rent-box {
+							// 	width: 100px;
+							// 	flex-direction: row;
+							// 	align-items: center;
+							// 	gap: 7px;
+							// 	.buy-rent {
+							// 		color: #eb6753;
+							// 		font-family: $font;
+							// 		font-size: 15px;
+							// 		font-style: normal;
+							// 		font-weight: 600;
+							// 		line-height: normal;
+							// 	}
+							// }
 							.date {
-								color: #181a20;
+								color: #fff;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -78,6 +86,7 @@
 							height: auto;
 							flex-direction: row;
 							gap: 15px;
+
 							.option {
 								width: auto;
 								height: auto;
@@ -95,16 +104,53 @@
 						}
 					}
 					.right-box {
-						width: auto;
+						// border: 1px solid greenyellow;
+						// flex: 1;
 						height: auto;
-						align-items: flex-end;
+						align-items: flex-start;
+						.divider {
+							width: 100%;
+							height: 2px;
+							background: #ddd;
+						}
+						.bottom-box{
+							margin-top: 20px;
+							.features-list {
+								list-style-type: none;
+								padding: 0;
+								margin: 0;
+								color: #263238;
+								font-size: 18px;
+							}
+							li {
+								display: flex;
+								align-items: center;
+								margin-bottom: 10px;
+
+								.icon {
+									width: 24px;
+									height: 24px;
+									margin-right: 10px;
+									color: #263238;
+								}
+							}
+							.klarna {
+								background-color: #f8c3cb;
+								padding: 2px 5px;
+								border-radius: 3px;
+								font-weight: bold;
+							}
+
+						}
 						.buttons {
 							width: auto;
 							height: auto;
+							display: flex;
 							flex-direction: row;
 							align-items: center;
 							gap: 11px;
-							margin: 0 10px 27px 0;
+							margin: 10px 10px 27px 0;
+						
 							p {
 								color: #181a20;
 								text-align: right;
@@ -156,12 +202,14 @@
 					}
 				}
 				.images {
-					width: 100%;
+					flex: 2;
 					height: auto;
 					gap: 10px;
 					.main-image {
-						width: 100%;
-						height: 600px;
+						border: 1px solid gray;
+						border-radius: 10px;
+						// width: 500px;
+						// height: 400px;
 						img {
 							width: 100%;
 							height: 100%;
@@ -175,12 +223,15 @@
 						flex-direction: row;
 						gap: 10px;
 						.sub-img-box {
-							width: 120px;
+							width: 130px;
 							height: 120px;
 							cursor: pointer;
+							&:hover {
+								border: 1px solid black;
+							}
 							img {
-								width: 100%;
-								height: 100%;
+								// width: 100%;
+								// height: 100%;
 								object-fit: cover;
 								border-radius: 12px;
 							}
@@ -214,6 +265,7 @@
 								justify-content: center;
 								border-radius: 12px;
 								border: 1px solid #ddd;
+								
 								img {
 									width: 35px;
 									height: auto;
@@ -247,6 +299,7 @@
 						gap: 50px;
 						padding: 29px 38px 50px 38px;
 						border-radius: 12px;
+						background: white;
 						border: 1px solid #c4c4c4;
 						.top {
 							width: 100%;
@@ -345,6 +398,7 @@
 						}
 					}
 					.address-config {
+						background: white;
 						width: 100%;
 						height: auto;
 						gap: 30px;

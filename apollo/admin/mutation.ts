@@ -145,3 +145,257 @@ export const REMOVE_COMMENT_BY_ADMIN = gql`
 		}
 	}
 `;
+
+
+
+
+
+
+
+/**************************
+ *      NOTIFICATION      *
+ *************************/
+
+export const CREATE_NOTIFICATION = gql`
+	mutation CreateNotification($input: CreateNotificationInput!) {
+		createNotification(input: $input) {
+			_id
+			notificationType
+			notificationStatus
+			notificationGroup
+			notificationTitle
+			notificationDesc
+			authorId
+			receiverId
+			propertyId
+			articleId
+			createdAt
+			updatedAt
+		}
+	}
+`;
+
+
+/**************************
+ *           FAQ          *
+ *************************/
+
+export const CREATE_FAQ_BY_ADMIN = gql`
+	mutation CreateFaq($input: FaqInputDto!) {
+		createFaq(input: $input) {
+			_id
+			faqQuestion
+			faqAnswer
+			faqType
+			faqStatus
+			createdAt
+			updatedAt
+			memberData {
+				_id
+				memberType
+				memberStatus
+				memberAuthType
+				memberPhone
+				memberNick
+				memberFullName
+				memberImage
+				memberAddress
+				memberDesc
+				memberProperties
+				memberArticles
+				memberFollowers
+				memberFollowings
+				memberPoints
+				memberLikes
+				memberViews
+				memberComments
+				memberRank
+				memberWarnings
+				memberBlocks
+				deletedAt
+				createdAt
+				updatedAt
+				accessToken
+			}
+		}
+	}
+`;
+
+
+export const UPDATE_FAQ_BY_ADMIN = gql`
+	mutation UpdateFaq($input: FaqUpdateDto!) {
+		updateFaq(input: $input) {
+			_id
+			faqQuestion
+			faqAnswer
+			faqType
+			faqStatus
+			createdAt
+			updatedAt
+			memberData {
+				_id
+				memberType
+				memberStatus
+				memberAuthType
+				memberPhone
+				memberNick
+				memberFullName
+				memberImage
+				memberAddress
+				memberDesc
+				memberProperties
+				memberArticles
+				memberFollowers
+				memberFollowings
+				memberPoints
+				memberLikes
+				memberViews
+				memberComments
+				memberRank
+				memberWarnings
+				memberBlocks
+				deletedAt
+				createdAt
+				updatedAt
+				accessToken
+			}
+		}
+	}
+`;
+
+
+export const DELETE_FAQ_BY_ADMIN = gql`
+	mutation DeleteFaq($input: String!) {
+		deleteFaq(input: $input) {
+			_id
+			faqQuestion
+			faqAnswer
+			faqType
+			faqStatus
+			createdAt
+			updatedAt
+		}
+	}
+`;
+
+
+
+
+/**************************
+ *         NOTICE          *
+ *************************/
+
+export const CREATE_NOTICE_BY_ADMIN = gql`
+	mutation CreateNotice($input: NoticeInputDto!) {
+		createNotice(input: $input) {
+			_id
+			noticeType
+			noticeContent
+			noticeStatus
+			createdAt
+			updatedAt
+			memberData {
+				_id
+				memberType
+				memberStatus
+				memberAuthType
+				memberPhone
+				memberNick
+				memberFullName
+				memberImage
+				memberAddress
+				memberDesc
+				memberProperties
+				memberArticles
+				memberFollowers
+				memberFollowings
+				memberPoints
+				memberLikes
+				memberViews
+				memberComments
+				memberRank
+				memberWarnings
+				memberBlocks
+				deletedAt
+				createdAt
+				updatedAt
+				accessToken
+				meLiked {
+					memberId
+					likeRefId
+					myFavorite
+				}
+				meFollowed {
+					followingId
+					followerId
+					myFollowing
+				}
+			}
+		}
+	}
+`;
+
+
+export const UPDATE_NOTICE_BY_ADMIN = gql`
+	mutation UpdateNotice($input: NoticeUpdateDto!) {
+		updateNotice(input: $input) {
+			_id
+			noticeType
+			noticeContent
+			noticeStatus
+			createdAt
+			updatedAt
+			memberData {
+				_id
+				memberType
+				memberStatus
+				memberAuthType
+				memberPhone
+				memberNick
+				memberFullName
+				memberImage
+				memberAddress
+				memberDesc
+				memberProperties
+				memberArticles
+				memberFollowers
+				memberFollowings
+				memberPoints
+				memberLikes
+				memberViews
+				memberComments
+				memberRank
+				memberWarnings
+				memberBlocks
+				deletedAt
+				createdAt
+				updatedAt
+				accessToken
+				meLiked {
+					memberId
+					likeRefId
+					myFavorite
+				}
+				meFollowed {
+					followingId
+					followerId
+					myFollowing
+				}
+			}
+		}
+	}
+`;
+
+
+export const DELETE_NOTICE_BY_ADMIN = gql`
+	mutation DeleteNotice($input: String!) {
+		deleteNotice(input: $input) {
+			_id
+			noticeType
+			noticeContent
+			noticeStatus
+			createdAt
+			updatedAt
+		}
+	}
+`;

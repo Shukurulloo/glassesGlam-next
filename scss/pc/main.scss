@@ -66,7 +66,7 @@ body::-webkit-scrollbar {
 				background-color: #fff;
 				border-bottom: 1px solid rgb(216, 216, 216);
 				color: #000000;
-				// border-top: 1px solid rgba(255, 255, 255, 0.07);
+				border-top: 1px solid red;
 				&.transparent {
 					background-color: #fff;
 				}
@@ -189,7 +189,7 @@ body::-webkit-scrollbar {
 						display: flex;
 						align-items: center;
 						.notification-icon {
-							color: white;
+							color: rgb(46, 9, 9);
 						}
 						.btn-lang {
 							border-radius: 4px;

@@ -28,7 +28,7 @@ const PropertyBigCard = (props: PropertyBigCardProps) => {
 	};
 
 	if (device === 'mobile') {
-		return <div>APARTMEND BIG CARD</div>;
+		return <div>Glasses BIG CARD</div>;
 	} else {
 		return (
 			<Stack className="property-big-card-box" onClick={() => goPropertyDetatilPage(property?._id)}>
@@ -53,6 +53,12 @@ const PropertyBigCard = (props: PropertyBigCardProps) => {
 						<div>
 							<span className="gender">{property.propertyType} </span>
 						</div>
+
+						{/* <div>
+							<span className="gender">{property.propertyType} </span>
+						</div> */}
+								
+
 
 						<div>
 							<span className="size">size: {property.propertySize} </span>
