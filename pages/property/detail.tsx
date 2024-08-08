@@ -5,6 +5,8 @@ import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import HomeIcon from '@mui/icons-material/Home';
 import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import PaymentIcon from '@mui/icons-material/Payment';
+import CheckIcon from '@mui/icons-material/Check';
+
 import useDeviceDetect from '../../libs/hooks/useDeviceDetect';
 import withLayoutFull from '../../libs/components/layout/LayoutFull';
 import { NextPage } from 'next';
@@ -429,55 +431,74 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 								</Stack> */}
 								<Stack className={'prop-desc-config'}>
 									<Stack className={'top'}>
-										<Typography className={'title'}>Property Description</Typography>
-										<Typography className={'desc'}>{property?.propertyDesc ?? 'No Description!'}</Typography>
+										<Stack className={'top-info'}>
+											<Typography className={'title'}>{property?.propertyTitle}</Typography>
+											<Typography className={'desc'}>{property?.propertyDesc ?? 'No Description!'}</Typography>
+										</Stack>
+
+									
+
+										
 									</Stack>
+											<Stack className={'divider'}></Stack>
 									<Stack className={'bottom'}>
-										<Typography className={'title'}>Property Details</Typography>
+									
+											<Stack>
+											<Typography className={'title'}>Glasses Details</Typography>
 										<Stack className={'info-box'}>
 											<Stack className={'left'}>
 												<Box component={'div'} className={'info'}>
-													<Typography className={'title'}>Price</Typography>
+													<Typography className={'title'}>Price :</Typography>
 													<Typography className={'data'}>${formatterStr(property?.propertyPrice)}</Typography>
 												</Box>
 												<Box component={'div'} className={'info'}>
-													<Typography className={'title'}>Glasses Size</Typography>
+													<Typography className={'title'}>Glasses Size :</Typography>
 													<Typography className={'data'}>{property?.propertySize} </Typography>
 												</Box>
 												<Box component={'div'} className={'info'}>
-													<Typography className={'title'}>Glasses Types</Typography>
+													<Typography className={'title'}>Glasses Types :</Typography>
 													<Typography className={'data'}>{property?.propertyGlass}</Typography>
 												</Box>
-											</Stack>
-											<Stack className={'right'}>
 												<Box component={'div'} className={'info'}>
-													<Typography className={'title'}>Year Built</Typography>
-													<Typography className={'data'}>{moment(property?.createdAt).format('YYYY')}</Typography>
+													<Typography className={'title'}>date of sale :</Typography>
+													<Typography className={'data'}>{moment(property?.createdAt).format('YYYY-MM-DD')}</Typography>
 												</Box>
 												<Box component={'div'} className={'info'}>
-													<Typography className={'title'}>Property Type</Typography>
+													<Typography className={'title'}>Gender :</Typography>
 													<Typography className={'data'}>{property?.propertyType}</Typography>
 												</Box>
 												<Box component={'div'} className={'info'}>
-													<Typography className={'title'}>Glasses color</Typography>
+													<Typography className={'title'}>Glasses color :</Typography>
 													<Typography className={'data'}>{property?.propertyColor}</Typography>
 												</Box>
-												{/* <Box component={'div'} className={'info'}>
-													<Typography className={'title'}>Property Options</Typography>
-													<Typography className={'data'}>
-														For {property?.propertyBarter && 'Barter'} {property?.propertyRent && 'Rent'}
-													</Typography>
-												</Box> */}
+											</Stack>
+											</Stack>
+										</Stack>
+										<Stack spacing={2}>
+											<Typography variant="h3" className="benefits-title">
+												Benefits
+											</Typography>
+											<Stack direction="row" alignItems="center" spacing={1}>
+												<CheckIcon className="benefit-icon" />
+												<Typography variant="body1">
+													12 month manufacturers <strong>warranty</strong>
+												</Typography>
+											</Stack>
+											<Stack direction="row" alignItems="center" spacing={1}>
+												<CheckIcon className="benefit-icon" />
+												<Typography variant="body1">
+													Brand <strong>case & cloth</strong> included
+												</Typography>
+											</Stack>
+											<Stack direction="row" alignItems="center" spacing={1}>
+												<CheckIcon className="benefit-icon" />
+												<Typography variant="body1">
+													Brand <strong>authenticity</strong> guaranteed
+												</Typography>
 											</Stack>
 										</Stack>
 									</Stack>
 								</Stack>
-								{/* <Stack className={'floor-plans-config'}>
-									<Typography className={'title'}>Floor Plans</Typography>
-									<Stack className={'image-box'}>
-										<img src={'/img/property/floorPlan.png'} alt={'image'} />
-									</Stack>
-								</Stack> */}
 								<Stack className={'address-config'}>
 									<Typography className={'title'}>Address</Typography>
 									<Stack className={'map-box'}>

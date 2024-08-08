@@ -64,18 +64,21 @@ const withLayoutMain = (Component: any) => {
 						<Stack className={'header-main'}>
 							{/* <FiberContainer /> */}
 							<Stack className={'header'}>
-								<div className="main-title">See the World Through Style</div>
-								<div className="tagline">
-									Welcome to <span className="brand-name">GlassesGlam</span> - the perfect place to find your new
-									favorite glasses every day.
+								<div style={{width:"100%", display:"flex", flexDirection:"column", alignItems:"flex-start", justifyContent:"center"}}>
+									<div className="main-title">See the World Through Style</div>
+									<div className="tagline">
+										Welcome to <span className="brand-name">GlassesGlam</span> - the perfect place to find your new
+										favorite glasses every day.
+									</div>
+									<div className="description">Discover your style with our wide range of affordable glasses.</div>
+									<Link href={'/property'}>
+										<button className="button">SHOP NOW</button>
+									</Link>
 								</div>
-								<div className="description">Discover your style with our wide range of affordable glasses.</div>
-								<Link href={'/property'}>
-									<button className="button">SHOP NOW</button>
-								</Link>
-							</Stack>
-							<Stack className={'container'}>
-								<HeaderFilter />
+
+								<Stack className={'container'}>
+									<HeaderFilter />
+								</Stack>
 							</Stack>
 						</Stack>
 
