@@ -286,7 +286,7 @@ body::-webkit-scrollbar {
 				align-items: center;
 				width: 100%;
 				margin-bottom: 20px;
-	
+
 				.search-box {
 					position: relative;
 					padding: 16px 29px;
@@ -296,14 +296,13 @@ body::-webkit-scrollbar {
 					flex-direction: row;
 					justify-content: space-between;
 					background: #ffffff;
-					
-	
+
 					.top {
 						align-items: center;
 						width: 200px;
 						height: auto;
 						display: flex;
-	
+
 						// flex-direction: column;
 						// span {
 						// 	color: #181a20;
@@ -342,7 +341,7 @@ body::-webkit-scrollbar {
 							}
 						}
 					}
-	
+
 					.select-box {
 						padding-right: 10px;
 						width: 752px;
@@ -362,14 +361,17 @@ body::-webkit-scrollbar {
 							border-radius: 12px;
 							box-sizing: border-box;
 							border: 1px solid #ddd;
-	
 							cursor: pointer;
+							&:hover {
+								background-color: rgba(163, 214, 108, 0.713);
+							}
 							&.on {
 								background: #ffffff;
 								border: 1px solid #ddd;
 								color: #181a20;
 							}
 							span {
+
 								color: #181a20;
 								font-family: $font;
 								font-size: 14px;
@@ -377,7 +379,6 @@ body::-webkit-scrollbar {
 								font-weight: 400;
 								line-height: 26px;
 							}
-							
 						}
 					}
 					.search-box-other {
@@ -412,7 +413,7 @@ body::-webkit-scrollbar {
 							display: flex;
 							align-items: center;
 							justify-content: center;
-							border-radius: 12px ;
+							border-radius: 12px;
 							background: #43403f;
 							cursor: pointer;
 							svg {
@@ -422,7 +423,7 @@ body::-webkit-scrollbar {
 							}
 						}
 						.search-btn:hover {
-						background: red;
+							background: red;
 						}
 					}
 					.filter-location {
@@ -567,22 +568,18 @@ body::-webkit-scrollbar {
 				}
 			}
 		}
-	
 	}
 
 	.header-basic {
 		position: relative;
-		
 		width: 100%;
-		height: 807px;
-		margin-left: 10%;
+		height: 857px;
+		// margin-left: 10%;
 		display: flex;
 		flex-direction: row;
-		border: 1px solid rgb(235, 18, 18);
 		justify-content: center;
 		background: black;
-		background
-		&.auth {
+		background &.auth {
 			height: 300px;
 		}
 		.container {
@@ -592,17 +589,20 @@ body::-webkit-scrollbar {
 				font-family: $font;
 				font-size: 48px;
 				font-style: normal;
-				font-weight: 600;
+				font-weight: 700;
 				line-height: normal;
 				letter-spacing: 0.96px;
 				text-transform: capitalize;
 			}
 			span {
-				color: #dfa813;
-				font-family: $font;
+				max-width: 620px;
+				margin-top: 15px;
+				background-color: #33c1c193;
+				color: #3c00f1;
+				font-family:fantasy;
 				font-size: 24px;
 				font-style: normal;
-				font-weight: 400;
+				font-weight: 600;
 				line-height: 26px;
 			}
 		}

@@ -40,7 +40,7 @@
 							text-transform: capitalize;
 						}
 						.top-box {
-							background-color: #eb6753;
+							background-color: #99fc74;;
 							width: auto;
 							height: auto;
 							padding: 3px;
@@ -73,7 +73,7 @@
 							// 	}
 							// }
 							.date {
-								color: #fff;
+								color: #0f0e0e;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -398,7 +398,7 @@
 											font-family: $font;
 											font-size: 14px;
 											font-style: normal;
-											font-weight: 400;
+											font-weight: 800;
 											line-height: 35px;
 										}
 									}
@@ -590,7 +590,7 @@
 					.leave-review-config {
 						border-radius: 12px;
 						border: 1px solid #c4c4c4;
-						background: #fff;
+						background: #ffffff;
 						box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 						padding: 30px 38px;
 						.main-title {
@@ -629,7 +629,8 @@
 							display: flex;
 							justify-content: flex-end;
 							button:disabled {
-								background: #dfdfdf;
+								background: #6253eb;
+						
 							}
 							.submit-review {
 								display: flex;
@@ -642,8 +643,9 @@
 								border-radius: 12px;
 								border: 1px solid #c4c4c4;
 								cursor: pointer;
+							
 								.title {
-									color: #181a20;
+									color: rgb(255, 255, 255);
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -661,8 +663,8 @@
 					gap: 20px;
 					border-radius: 12px;
 					border: 1px solid rgba(196, 196, 196, 0.79);
-					background: #fff;
-					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
+					background: #99fc74;
+					box-shadow: 0px 5px 14px 0px rgba(247, 7, 179, 0.71);
 					.info-box {
 						position: relative;
 						width: 100%;
@@ -780,7 +782,10 @@
 							align-items: center;
 							gap: 10px;
 							border-radius: 12px;
-							background: #eb6753;
+							background: #6253eb;
+							&:hover{
+								background: #ff5117;
+							}
 							.title {
 								color: #fff;
 								font-family: $font;

@@ -101,8 +101,8 @@ const PropertyCard = (props: PropertyCardType) => {
 								<div className='wrap'>
 								<IconButton color={'default'}>
 									<RemoveRedEyeIcon />
-								</IconButton>
 								<Typography className="view-cnt">{property?.propertyViews}</Typography>
+								</IconButton>
 								</div>
 			
 								<div className='wrap'>
@@ -114,8 +114,9 @@ const PropertyCard = (props: PropertyCardType) => {
 									) : (
 										<FavoriteBorderIcon />
 									)}
+										<Typography className="view-cnt">{property?.propertyLikes}</Typography>
 								</IconButton>
-								<Typography className="view-cnt">{property?.propertyLikes}</Typography>
+							
 									</div>
 							</Stack>
 						)}

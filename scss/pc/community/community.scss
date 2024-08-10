@@ -1,13 +1,14 @@
 #pc-wrap {
 	#community-list-page {
 		position: relative;
+		background-color: #abff848a;
 		.container {
 			padding-top: 100px;
 			flex-direction: column;
 			gap: 64px;
 			.main-box {
 				flex-direction: row;
-				gap: 31px;
+				gap: 21px;
 				.left-config {
 					width: 266px;
 					height: fit-content;
@@ -16,9 +17,8 @@
 					margin-top: 100px;
 					margin-bottom: 50px;
 					border-radius: 12px;
-					border: 1px solid rgba(196, 196, 196, 0.79);
-					background: #fff;
-					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
+					background: #f6850d;
+					box-shadow: 0px 7px 7px 7px rgb(241, 243, 251);
 					.image-info {
 						width: 100%;
 						flex-direction: row;
@@ -26,13 +26,13 @@
 						img {
 							width: 80px;
 							height: 80px;
-							border-radius: 50%;
-							object-fit: cover;
+							border-radius: 10px;
+							// object-fit: cover;
 						}
 						.community-name {
 							.name {
 								margin-top: 15px;
-								color: #181a20;
+								color: #f9faff;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -48,23 +48,28 @@
 						justify-content: center;
 						align-items: center;
 						border-radius: 6px;
-						border: 1px solid #181a20;
+						border: 1px solid #03091c;
 						margin-bottom: 10px;
-						color: #181a20;
+						color: #ffffff;
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
 						font-weight: 500;
 						line-height: 150%;
 						letter-spacing: -0.266px;
+						&:hover{
+							background-color: #76f03d;
+							color: #000000;
+						}
 					}
 					.tab-button.active {
 						width: 216.612px;
 						height: 36px;
 						padding: 0;
 						justify-content: center;
+						border: 1px solid #ffffff;
 						align-items: center;
-						background-color: #000000;
+						background-color: #54a52e;
 						color: #ffffff;
 						border-radius: 6px;
 						margin-bottom: 10px;
@@ -115,7 +120,7 @@
 								width: 91px;
 								height: 32px;
 								border-radius: 4px;
-								background: #eb6753;
+								background: #f6850d;
 								color: #fff;
 								font-family: $font;
 								font-size: 13px;
@@ -123,6 +128,11 @@
 								font-weight: 500;
 								line-height: normal;
 								letter-spacing: 0.39px;
+								&:hover{
+									background: #f6850da5;
+								color: #545151;
+
+								}
 							}
 						}
 						.list-box {

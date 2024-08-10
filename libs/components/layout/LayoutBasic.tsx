@@ -30,12 +30,12 @@ const withLayoutBasic = (Component: any) => {
 			switch (router.pathname) {
 				case '/property':
 					title = 'Discover Your Perfect Glasses';
-					desc = 'Explore our latest collection and find the perfect pair that suits your style!';
+					desc = 'Browse our exclusive collection to find the glasses that perfectly match your unique style and needs!';
 					bgImage = '/img/banner/back-rebbit.jpeg';
 					break;
 				case '/agent':
 					title = 'Meet Our Agents';
-					desc = 'Connect with Our Expert Agents';
+					desc = 'Discover and connect with our dedicated agents, each committed to helping you find the perfect property. Let our expertise guide your journey home.';
 					bgImage = '/img/banner/agent-back.jpg';
 					break;
 				case '/agent/detail':
@@ -44,35 +44,35 @@ const withLayoutBasic = (Component: any) => {
 					bgImage = '/img/banner/background-agent.jpg';
 					break;
 				case '/mypage':
-					title = 'my page';
-					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header1.svg';
+					title = 'My Page';
+					desc = 'Tailor your experience and manage your account effortlessly.';
+					bgImage = '/img/banner/background10.jpg';
 					break;
 				case '/community':
 					title = 'Community';
-					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header2.svg';
+					desc = 'Explore our vibrant community where connections are made, and neighbors become friends. Join us in building a thriving, supportive environment for everyone.';
+					bgImage = '/img/banner/background09.jpg';
 					break;
 				case '/community/detail':
 					title = 'Community Detail';
-					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header2.svg';
+					desc = 'Dive into our vibrant communities and explore what each neighborhood has to offer!';
+					bgImage = '/img/banner/background10.jpg';
 					break;
 				case '/cs':
 					title = 'CS';
-					desc = 'We are glad to see you again!';
-					bgImage = '/img/banner/header2.svg';
+					desc = 'We’re excited to have you back! Let’s continue where we left off.';
+					bgImage = '/img/banner/background10.jpg';
 					break;
 				case '/account/join':
 					title = 'Login/Signup';
-					desc = 'Authentication Process';
-					bgImage = '/img/banner/header2.svg';
+					desc = 'Join us or sign in to continue your journey with ease.';
+					bgImage = '/img/banner/background10.jpg';
 					setAuthHeader(true);
 					break;
 				case '/member':
 					title = 'Member Page';
-					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header1.svg';
+					desc = 'Access your personalized dashboard and stay connected with the latest updates.';
+					bgImage = '/img/banner/background10.jpg';
 					break;
 				default:
 					break;
@@ -127,7 +127,7 @@ const withLayoutBasic = (Component: any) => {
 							style={{
 								backgroundImage: `url(${memoizedValues.bgImage})`,
 								backgroundSize: 'cover',
-								width:"80%",
+								width:"100%",
 								boxShadow: 'inset 10px 40px 150px 40px rgb(24 22 36)',
 							}}
 						>
