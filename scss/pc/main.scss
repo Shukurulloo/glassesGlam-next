@@ -149,16 +149,17 @@ body::-webkit-scrollbar {
 							cursor: pointer;
 							svg {
 								color: #ffffff;
+								font-weight: 600px;
 								margin-right: 10px;
 							}
-							// span {
-							// 	font-family: $font;
-							// 	font-size: 14px;
-							// 	font-style: normal;
-							// 	font-weight: 600;
-							// 	line-height: normal;
-							// 	color: #ffffff;
-							// }
+							span {
+								font-family: $font;
+								font-size: 14px;
+								font-style: normal;
+								font-weight: 600;
+								line-height: normal;
+								color: #101010;
+							}
 							span:hover::after {
 								content: '';
 								position: absolute;

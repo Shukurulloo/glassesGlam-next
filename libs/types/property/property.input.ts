@@ -47,6 +47,7 @@ export interface AgentPropertiesInquiry {
 }
 
 interface ALPISearch {
+	// propertyGlassList: any;
 	propertyStatus?: PropertyStatus;
 	typeList?: PropertyType[];
 	glassList?: PropertyGlass[];

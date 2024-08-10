@@ -146,12 +146,6 @@ export const REMOVE_COMMENT_BY_ADMIN = gql`
 	}
 `;
 
-
-
-
-
-
-
 /**************************
  *      NOTIFICATION      *
  *************************/
@@ -174,7 +168,6 @@ export const CREATE_NOTIFICATION = gql`
 		}
 	}
 `;
-
 
 /**************************
  *           FAQ          *
@@ -221,7 +214,6 @@ export const CREATE_FAQ_BY_ADMIN = gql`
 	}
 `;
 
-
 export const UPDATE_FAQ_BY_ADMIN = gql`
 	mutation UpdateFaq($input: FaqUpdateDto!) {
 		updateFaq(input: $input) {
@@ -263,7 +255,6 @@ export const UPDATE_FAQ_BY_ADMIN = gql`
 	}
 `;
 
-
 export const DELETE_FAQ_BY_ADMIN = gql`
 	mutation DeleteFaq($input: String!) {
 		deleteFaq(input: $input) {
@@ -277,9 +268,6 @@ export const DELETE_FAQ_BY_ADMIN = gql`
 		}
 	}
 `;
-
-
-
 
 /**************************
  *         NOTICE          *
@@ -335,7 +323,6 @@ export const CREATE_NOTICE_BY_ADMIN = gql`
 	}
 `;
 
-
 export const UPDATE_NOTICE_BY_ADMIN = gql`
 	mutation UpdateNotice($input: NoticeUpdateDto!) {
 		updateNotice(input: $input) {
@@ -385,7 +372,6 @@ export const UPDATE_NOTICE_BY_ADMIN = gql`
 		}
 	}
 `;
-
 
 export const DELETE_NOTICE_BY_ADMIN = gql`
 	mutation DeleteNotice($input: String!) {

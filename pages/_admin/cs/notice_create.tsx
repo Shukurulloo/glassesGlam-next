@@ -13,10 +13,9 @@ import {
 	UPDATE_FAQ_BY_ADMIN,
 	UPDATE_NOTICE_BY_ADMIN,
 } from '../../../apollo/admin/mutation';
-
+import { NoticeInput } from '../../../libs/types/notice/notice.input';
 import { useRouter } from 'next/router';
 import { T } from '../../../libs/types/common';
-import { NoticeInput } from '../../../libs/types/notice/notice.input';
 
 const AddNotice = ({ initialValues, ...props }: any) => {
 	const device = useDeviceDetect();
@@ -60,9 +59,6 @@ const AddNotice = ({ initialValues, ...props }: any) => {
 		},
 	});
 
-	if (getNoticeError) {
-		router.push('/_error');
-	}
 	/** LIFECYCLES **/
 	useEffect(() => {
 		setInsertNoticeData({

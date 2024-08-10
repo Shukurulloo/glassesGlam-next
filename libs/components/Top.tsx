@@ -285,7 +285,7 @@ const Top: NextPage = ({ intialValues, ...props }: any) => {
 								<div>{t('Home')}</div>
 							</Link>
 							<Link href={'/property'}>
-								<div>{t('Products')}</div>
+								<div>{t('Glasses')}</div>
 							</Link>
 							<Link href={'/agent'}>
 								<div> {t('Agents')} </div>

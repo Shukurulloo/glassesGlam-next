@@ -10,7 +10,6 @@ import { FaqStatus, FaqType } from '../../../libs/enums/faq.enum';
 import { CREATE_FAQ_BY_ADMIN, UPDATE_FAQ_BY_ADMIN } from '../../../apollo/admin/mutation';
 import { FaqInput } from '../../../libs/types/faq/faq.input';
 import { useRouter } from 'next/router';
-import { T } from '../../../libs/types/common';
 
 const AddFaq = ({ initialValues, ...props }: any) => {
 	const device = useDeviceDetect();
@@ -19,8 +18,6 @@ const AddFaq = ({ initialValues, ...props }: any) => {
 	const [insertFaqData, setInsertFaqData] = useState<FaqInput>(initialValues);
 	const [faqType, setFaqType] = useState<FaqType[]>(Object.values(FaqType));
 	const [faqStatus, setFaqStatus] = useState<FaqStatus[]>(Object.values(FaqStatus));
-	const [faqs, setFaqs] = useState<FaqType[]>([]);
-	const [total, setTotal] = useState<number>(0);
 	const token = getJwtToken();
 	const user = useReactiveVar(userVar);
 	const currentYear = new Date().getFullYear();
@@ -29,16 +26,8 @@ const AddFaq = ({ initialValues, ...props }: any) => {
 	console.log(years);
 
 	/** APOLLO REQUESTS **/
-	const [createFaq, { error: createError }] = useMutation(CREATE_FAQ_BY_ADMIN, {
-		onError: (error) => {
-			router.push('/_error');
-		},
-	});
-	const [updateFaq, { error: createUpdateError }] = useMutation(UPDATE_FAQ_BY_ADMIN, {
-		onError: () => {
-			router.push('/_error');
-		},
-	});
+	const [createFaq] = useMutation(CREATE_FAQ_BY_ADMIN);
+	const [updateFaq] = useMutation(UPDATE_FAQ_BY_ADMIN);
 
 	const {
 		loading: getFaqLoading,
@@ -48,15 +37,7 @@ const AddFaq = ({ initialValues, ...props }: any) => {
 	} = useQuery(GET_FAQ, {
 		fetchPolicy: 'network-only',
 		variables: { input: router.query.faqId },
-		onCompleted: (data: T) => {
-			setFaqs(data?.getFaqs?.list || []);
-			setTotal(data?.getFaqs?.metaCounter[0]?.total || 0);
-		},
 	});
-
-	if (getFaqError) {
-		router.push('/_error');
-	}
 	/** LIFECYCLES **/
 	useEffect(() => {
 		setInsertFaqData({
@@ -67,8 +48,6 @@ const AddFaq = ({ initialValues, ...props }: any) => {
 			faqStatus: getFaqData?.getFaq ? getFaqData?.getFaq?.faqStatus : '',
 		});
 	}, [getFaqLoading, getFaqData]);
-
-	console.log(getFaqData?.getFaq, ' *****************');
 
 	/** HANDLERS **/
 
@@ -154,7 +133,7 @@ const AddFaq = ({ initialValues, ...props }: any) => {
 		return (
 			<div className="add-question-page">
 				<Stack className="main-title-box">
-					<Typography className="main-title">Add New Friquendly Asked Question</Typography>
+					<Typography className="main-title">Add New Frequently Asked Question</Typography>
 				</Stack>
 
 				<div>
@@ -242,8 +221,7 @@ const AddFaq = ({ initialValues, ...props }: any) => {
 							<Button className="next-button" onClick={cancelBtnHandler}>
 								<Typography className="next-button-text">Cancel</Typography>
 							</Button>
-							<Box component = {"div"}>
-							
+							<Box component={'div'}>
 								{router.query.faqId ? (
 									<Button className="next-button" disabled={doDisabledCheck()} onClick={updateFaqHandler}>
 										<Typography className="next-button-text">Save</Typography>

@@ -36,7 +36,7 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 	const [anchorEl, setAnchorEl] = useState<[] | HTMLElement[]>([]);
 	const router = useRouter();
 	const [faqsInquiry, setFaqsInquiry] = useState<FaqsInquiry>(initialInquiry);
-	const [type, setType] = useState<string>('MOTORCYCLE');
+	const [type, setType] = useState<string>('');
 
 	const [faqsTotal, setFaqsTotal] = useState<number>(0);
 	const [value, setValue] = useState('ALL');
@@ -299,7 +299,7 @@ FaqArticles.defaultProps = {
 	initialInquiry: {
 		page: 1,
 		limit: 10,
-		// faqType: 'MOTORCYCLE',
+		// faqType: '',
 	},
 };
 
