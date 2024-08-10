@@ -18,6 +18,7 @@
     }
   }
   .aside {
+    
     .logo-box {
       display: flex;
       flex-direction: row;
@@ -38,7 +39,7 @@
     }
   }
   .user {
-    background: #f5f5f5;
+    background: #e3f2b3;
   }
   .menu-list {
     padding: 8px 24px 8px 32px;
@@ -57,6 +58,7 @@
     }
   }
   #bunker {
+    background: #adaeac;
     width: calc(100% - 280px);
     margin-left: auto;
     padding: 116px 24px;
@@ -130,8 +132,6 @@
     }
     .content {
       width: 100%;
-
-      
       .btn_add{
         background: rgba(36, 59, 239, 0.959) ;
         color: white;
@@ -314,7 +314,7 @@
     }
 
     .table-wrap {
-      background: #fff;
+      background: hsl(175, 75%, 75%);
       border-radius: 4px;
       box-shadow: rgb(145 158 171 / 20%) 0px 0px 2px 0px, rgb(145 158 171 / 12%) 0px 12px 24px -4px;
       .tab-menu {
@@ -326,12 +326,12 @@
           height: 48px;
           cursor: pointer;
           padding: 12px 16px;
-          color: #bdbdbd;
+          color: #fff9f9;
           font-size: 14px;
         }
         li.on {
           font-weight: 500;
-          color: #e92c28;
+          color: #ff0000;
           border-bottom: 2px solid #e92c28;
         }
       }
