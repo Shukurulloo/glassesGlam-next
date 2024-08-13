@@ -2,6 +2,7 @@
   .cs-page {
     position: relative;
     padding: 60px 0px 60px;
+    background-color: #9d8fee84;
     width: 100%;
     height: auto;
     .container {
@@ -24,7 +25,7 @@
             letter-spacing: 0.525px;
           }
           p {
-            color: #757575;
+            color: #0909099a;
             font-family: $font;
             font-size: 16px;
             font-style: normal;
@@ -49,9 +50,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid #EEE;
+            border: 2px solid #c6ff0c;
+            background-color: #65eb53;
             cursor: pointer;
-            color: #BDBDBD;
+            color: #020202;
             font-family: $font;
             font-size: 14px;
             font-style: normal;
@@ -59,7 +61,7 @@
             line-height: normal;
             letter-spacing: 0.42px;
             &.active {
-              border: 1px solid #725CE8;
+              border: 2px solid #310dfd;
               background: #EB6753;
               color: #FFF;
             }
@@ -173,16 +175,17 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              color: #BDBDBD;
+              color: #5b5959;
               text-align: center;
               font-family: $font;
               font-size: 15px;
               font-style: normal;
-              font-weight: 400;
+              font-weight: 500;
               line-height: normal;
               letter-spacing: -0.225px;
               cursor: pointer;
               &.active {
+              font-weight: 600;
                 border-bottom: 1px solid #EB6753;
                 color: #EB6753;
               }

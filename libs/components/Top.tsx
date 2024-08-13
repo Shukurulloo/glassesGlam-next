@@ -282,10 +282,10 @@ const Top: NextPage = ({ intialValues, ...props }: any) => {
 						</Box>
 						<Box component={'div'} className={'router-box'}>
 							<Link href={'/'}>
-								<div>{t('Home')}</div>
+								<div>{t('Home')} </div>
 							</Link>
 							<Link href={'/property'}>
-								<div>{t('Glasses')}</div>
+								<div>{t('Glasses')} </div>
 							</Link>
 							<Link href={'/agent'}>
 								<div> {t('Agents')} </div>
@@ -347,14 +347,14 @@ const Top: NextPage = ({ intialValues, ...props }: any) => {
 										{hasNewNotifications && (
 											<div
 												style={{
-													border:"1px solid red",
+													// border:"1px solid red",
 													position: 'absolute',
 													top: '-10px',
 													right: '-3px',
 													width: '15px',
 													height: '15px',
 													borderRadius: '50%',
-													backgroundColor: '#ef1d26',
+													// backgroundColor: '#ef1d26',
 												}}
 											>
 												{' '}

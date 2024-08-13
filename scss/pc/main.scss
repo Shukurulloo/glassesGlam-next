@@ -66,7 +66,6 @@ body::-webkit-scrollbar {
 				background-color: #fff;
 				border-bottom: 1px solid rgb(216, 216, 216);
 				color: #000000;
-				border-top: 1px solid red;
 				&.transparent {
 					background-color: #fff;
 				}
@@ -848,7 +847,7 @@ body::-webkit-scrollbar {
 							cursor: pointer;
 						}
 						span {
-							color: #bebdbd;
+							color: #ffffff;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -866,7 +865,7 @@ body::-webkit-scrollbar {
 						}
 						.media-box {
 							margin-top: 12px;
-							color: #929495;
+							color: #ffffff;
 							svg {
 								font-size: 32px;
 								margin-right: 22px;
@@ -900,7 +899,7 @@ body::-webkit-scrollbar {
 							align-items: center;
 							box-sizing: border-box;
 							border-radius: 12px;
-							background: #212329;
+							background: #223a6e;
 							input {
 								margin-right: 10px;
 								width: 85%;
@@ -945,7 +944,7 @@ body::-webkit-scrollbar {
 							}
 							span {
 								margin-top: 25px;
-								color: #bebdbd;
+								color: #fffbfb;
 								font-family: $font;
 								font-size: 14px;
 								font-style: normal;
@@ -969,7 +968,7 @@ body::-webkit-scrollbar {
 				justify-content: space-between;
 				align-items: flex-end;
 				span {
-					color: #bebdbd;
+					color: #ff0303;
 					font-family: $font;
 					font-size: 14px;
 					font-style: normal;
