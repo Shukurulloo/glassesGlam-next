@@ -115,7 +115,7 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 							<span className={'descglass'}>{property?.propertyGlass}</span>
 						</div>
 						<div className="view-like-box">
-							<IconButton color={'black'}>
+							<IconButton>
 								<RemoveRedEyeIcon />
 							</IconButton>
 							<Typography className="view-cnt">{property?.propertyViews}</Typography>

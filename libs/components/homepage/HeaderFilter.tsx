@@ -224,34 +224,29 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 			<>
 				<Stack className={'search-box'}>
 					<Stack className={'select-box'}>
-						{/* <div className={'bottom'}>
-							<Box className={'search-btn'} onClick={pushSearchHandler}>
-								<img src="/img/icons/search.svg" alt="" />
-							</Box>
-						</div> */}
-
-						<Box className={`box ${openType ? 'on' : ''}`} onClick={typeStateChangeHandler}>
+				
+						{/* @ts-ignore */}
+						<Box component={'div'} className={`box ${openType ? 'on' : ''}`} onClick={typeStateChangeHandler}>
 							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('Gender')} </span>
 							<ExpandMoreIcon />
 						</Box>
-						<Box component={'div'} className={`box ${openGlass ? 'on' : ''}`} onClick={glassStateChangeHandler}>
-							<span>{searchFilter?.search?.glassList ? searchFilter?.search?.glassList[0] : t('Specs')} </span>
+						{/* @ts-ignore */}
+						<Box  className={`box ${openGlass ? 'on' : ''}`} onClick={glassStateChangeHandler}>
+							<span>{searchFilter?.search?.glassList ? searchFilter?.search?.glassList[0] : t('Glass')} </span>
 							<ExpandMoreIcon />
 						</Box>
+						{/* @ts-ignore */}
 						<Box className={`box ${openSize ? 'on' : ''}`} onClick={sizeStateChangeHandler}>
 							<span>{searchFilter?.search?.sizeList ? `${searchFilter?.search?.sizeList[0]} ` : t('Size')}</span>
 							<ExpandMoreIcon />
 						</Box>
+						{/* @ts-ignore */}
 						<Box className={`box ${openColor ? 'on' : ''}`} onClick={colorStateChangeHandler}>
 							<span>{searchFilter?.search?.colorList ? `${searchFilter?.search?.colorList[0]} ` : t('Color')}</span>
 							<ExpandMoreIcon />
 						</Box>
 					</Stack>
-					{/* <Stack className={'search-box-other'}>
-						<Box className={'search-btn'} onClick={pushSearchHandler}>
-							<img src="/img/icons/search_white.svg" alt="" />
-						</Box>
-					</Stack> */}
+
 					{/*MENU */}
 					<div className={`filter-location ${openType ? 'on' : ''}`} ref={typeRef}>
 						{propertyType.map((type: string) => {
