@@ -225,22 +225,18 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				<Stack className={'search-box'}>
 					<Stack className={'select-box'}>
 				
-						{/* @ts-ignore */}
 						<Box component={'div'} className={`box ${openType ? 'on' : ''}`} onClick={typeStateChangeHandler}>
 							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('Gender')} </span>
 							<ExpandMoreIcon />
 						</Box>
-						{/* @ts-ignore */}
 						<Box  className={`box ${openGlass ? 'on' : ''}`} onClick={glassStateChangeHandler}>
 							<span>{searchFilter?.search?.glassList ? searchFilter?.search?.glassList[0] : t('Glass')} </span>
 							<ExpandMoreIcon />
 						</Box>
-						{/* @ts-ignore */}
 						<Box className={`box ${openSize ? 'on' : ''}`} onClick={sizeStateChangeHandler}>
 							<span>{searchFilter?.search?.sizeList ? `${searchFilter?.search?.sizeList[0]} ` : t('Size')}</span>
 							<ExpandMoreIcon />
 						</Box>
-						{/* @ts-ignore */}
 						<Box className={`box ${openColor ? 'on' : ''}`} onClick={colorStateChangeHandler}>
 							<span>{searchFilter?.search?.colorList ? `${searchFilter?.search?.colorList[0]} ` : t('Color')}</span>
 							<ExpandMoreIcon />
