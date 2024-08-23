@@ -231,7 +231,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						</Box>
 						{/* @ts-ignore */}
 						<Box  className={`box ${openGlass ? 'on' : ''}`} onClick={glassStateChangeHandler}>
-							<span>{searchFilter?.search?.glassList ? searchFilter?.search?.glassList[0] : t('Glass')} </span>
+							<span>{searchFilter?.search?.glassList ? searchFilter?.search?.glassList[0] : t('Type')} </span>
 							<ExpandMoreIcon />
 						</Box>
 						{/* @ts-ignore */}
