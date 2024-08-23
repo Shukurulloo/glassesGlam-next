@@ -219,24 +219,27 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 
 	if (device === 'mobile') {
 		return <div>HEADER FILTER MOBILE</div>;
-	} else {
+	} else { //ts-ign
 		return (
 			<>
 				<Stack className={'search-box'}>
 					<Stack className={'select-box'}>
-				
+						{/* @ts-ignore */}
 						<Box component={'div'} className={`box ${openType ? 'on' : ''}`} onClick={typeStateChangeHandler}>
 							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('Gender')} </span>
 							<ExpandMoreIcon />
 						</Box>
+						{/* @ts-ignore */}
 						<Box  className={`box ${openGlass ? 'on' : ''}`} onClick={glassStateChangeHandler}>
 							<span>{searchFilter?.search?.glassList ? searchFilter?.search?.glassList[0] : t('Glass')} </span>
 							<ExpandMoreIcon />
 						</Box>
+						{/* @ts-ignore */}
 						<Box className={`box ${openSize ? 'on' : ''}`} onClick={sizeStateChangeHandler}>
 							<span>{searchFilter?.search?.sizeList ? `${searchFilter?.search?.sizeList[0]} ` : t('Size')}</span>
 							<ExpandMoreIcon />
 						</Box>
+						{/* @ts-ignore */}
 						<Box className={`box ${openColor ? 'on' : ''}`} onClick={colorStateChangeHandler}>
 							<span>{searchFilter?.search?.colorList ? `${searchFilter?.search?.colorList[0]} ` : t('Color')}</span>
 							<ExpandMoreIcon />
@@ -248,7 +251,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						{propertyType.map((type: string) => {
 							return (
 								<div onClick={() => propertyTypeSelectHandler(type)} key={type}>
-									<img src={`img/banner/cities/${type}.JPG`} alt="" />
+									<img src={`img/banner/cities/${type}.webp`} alt="" />
 									<span>{type}</span>
 								</div>
 							);
@@ -289,7 +292,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 									onClick={() => propertyColorSelectHandler(color)}
 									key={color}
 								>
-									<img src={`img/banner/colors/${color}.JPG`} alt="" />
+									<img src={`img/banner/colors/${color}.webp`} alt="" />
 									<span>{color}</span>
 								</div>
 							);

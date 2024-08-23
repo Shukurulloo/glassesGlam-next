@@ -427,6 +427,7 @@ body::-webkit-scrollbar {
 						}
 					}
 					.filter-location {
+						// border: 1px solid red;
 						position: absolute;
 						padding: 40px 60px;
 						width: 1094px;
@@ -447,7 +448,9 @@ body::-webkit-scrollbar {
 						&.on {
 							visibility: visible;
 							transition: 0.2s ease-out;
-							background: #fffdfd;
+							background: #ffffff;
+							border-radius: 0 0 10px 10px;
+							margin-top: -7px;
 						}
 						div {
 							width: 295px;
@@ -463,13 +466,16 @@ body::-webkit-scrollbar {
 							span {
 								margin-left: 22px;
 								color: #181a20;
-								font-family: $font;
-								font-size: 20px;
+								font-family:'Arial Narrow Bold',;
+								font-size: 17px;
 								font-style: normal;
-								font-weight: 400;
+								font-weight: 500;
 								line-height: 26px;
 								cursor: pointer;
 								text-transform: capitalize;
+								&:hover{
+								text-decoration: 2px red underline;
+								}
 							}
 							label {
 								line-height: 13px;

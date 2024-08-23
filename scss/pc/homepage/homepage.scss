@@ -603,7 +603,7 @@
 				// border: 1px solid red;
 				flex-direction: row;
 				align-items: center;
-				width: 80%;
+				width: 100%;
 				.video-wrap {
 					// display: flex;
 					// align-items: center;
@@ -622,7 +622,7 @@
 					}
 				}
 				.text-wrap {
-					// border: 1px solid red;
+					// border: 1px solid rgb(26, 2, 241);
 					display: flex;
 					height: 510px;
 					align-items: center;
@@ -630,6 +630,9 @@
 					flex: 2;
 					color: #333;
 					h2 {
+					// border: 1px solid red;
+						align-items: center;
+						justify-content: center;
 						font-size: 26px;
 						font-family: Verdana, Geneva, Tahoma, sans-serif;
 						margin-bottom: 30px;
