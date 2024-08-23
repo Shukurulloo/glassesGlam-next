@@ -261,11 +261,10 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						{propertyGlass.map((glass: string) => {
 							return (
 								<div
-									// style={{ backgroundImage: `url(s/img/banner/type/${glass.toLowerCase()}.JPG)` }}
 									onClick={() => propertyGlassSelectHandler(glass)}
 									key={glass}
 								>
-									<img src={`img/banner/types/${glass}.JPG`} alt="" />
+									<img src={`img/banner/types/${glass}.webp`} alt="" />
 									<span>{glass}</span>
 								</div>
 							);
@@ -275,7 +274,6 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						{propertySize.map((size: string) => {
 							return (
 								<div
-									// style={{ backgroundImage: `url(/img/banner/types/${size.toLowerCase()}.webp)` }}
 									onClick={() => propertySizeSelectHandler(size)}
 									key={size}
 								>
